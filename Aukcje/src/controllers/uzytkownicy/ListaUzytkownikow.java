@@ -57,6 +57,10 @@ public class ListaUzytkownikow extends ServletMain
 		initServlet();
     	
     }
+	protected boolean authRequired()
+	{
+		return true;
+	}
 	private void setUzytkownicy()
 	{
 		UzytkownicyLista u_lista = new UzytkownicyLista();

@@ -1,5 +1,9 @@
 package testy;
 
+import java.util.ArrayList;
+
+import modules.aukcje.Aukcja;
+import modules.aukcje.AukcjaLista;
 import modules.uzytkownicy.Uzytkownik;
 import modules.uzytkownicy.UzytkownikFactory;
 
@@ -11,11 +15,10 @@ public class Test
 	 */
 	public static void main(String[] args)
 	{
-		UzytkownikFactory factory = new UzytkownikFactory();
-		factory.setLogin("admin");
-		Uzytkownik uz = (Uzytkownik)factory.getObject();
-		
-		System.out.println(uz.getNazwisko());
+		AukcjaLista au = new AukcjaLista();
+		ArrayList<Object> a = au.getList();
+		Aukcja aukcja = (Aukcja)a.get(0);
+		System.out.println(aukcja.getNazwa());
 
 	}
 

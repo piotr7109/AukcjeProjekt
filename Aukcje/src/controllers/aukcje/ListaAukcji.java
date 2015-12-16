@@ -38,11 +38,10 @@ public class ListaAukcji extends ServletMain
     {
     	String html ="";
     	Aukcja au;
-    	for(int i=0; i< ile_aukcji; i++)
+    	for(int i=0; i< this.ile_aukcji; i++)
     	{
     		au = (Aukcja)aukcje.get(i);
     		html +="<tr>";
-    		
     		
     		html +=String.format("<td>%d</td>", (i+1));
     		html +=String.format("<td>%s</td>", au.getNazwa());

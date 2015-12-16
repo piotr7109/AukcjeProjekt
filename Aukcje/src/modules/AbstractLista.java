@@ -12,6 +12,7 @@ import modules.aukcje.AukcjaFactory;
 
 abstract public class AbstractLista
 {
+	protected String table;
 	public ArrayList<Object> getList()
 	{
 		ArrayList<Object> objects = new ArrayList<Object>();
@@ -21,10 +22,9 @@ abstract public class AbstractLista
 		try
 		{
 			stmt = c.createStatement();
-			String query = String.format("SELECT id FROM t_aukcje");
+			String query = String.format("SELECT id FROM %s", table);
 			
 			ResultSet rs = stmt.executeQuery( query );
-			System.out.println(query);
 			while ( rs.next() ) 
 			{
 				objects.add(this.fetchObject(rs));

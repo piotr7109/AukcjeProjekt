@@ -1,16 +1,16 @@
 package modules.aukcje;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
-import main.PostgreSQLJDBC;
 import modules.AbstractLista;
 
 public class AukcjaLista extends AbstractLista
 {
+	public AukcjaLista() {
+		table = "t_aukcje";
+	}
+	
 	protected Object fetchObject(ResultSet rs) throws SQLException
 	{
 		

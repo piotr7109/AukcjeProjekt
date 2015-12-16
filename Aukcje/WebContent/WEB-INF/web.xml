@@ -35,4 +35,13 @@
     <servlet-name>Dodawanie aukcji</servlet-name>
     <url-pattern>/dodaj_aukcje</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Lista aukcji</servlet-name>
+    <servlet-class>controllers.aukcje.ListaAukcji</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Lista aukcji</servlet-name>
+    <url-pattern>/lista_aukcji</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -28,7 +28,7 @@ public class UzytkownikFactory extends AbstractFactory
 		query = String.format("SELECT * FROM t_uzytkownicy where id=%d OR login='%s'", id, login);
 	}
 	
-	public Object fetchObject(ResultSet rs) throws SQLException
+	protected Object fetchObject(ResultSet rs) throws SQLException
 	{
 		
 		Uzytkownik uz = new Uzytkownik();

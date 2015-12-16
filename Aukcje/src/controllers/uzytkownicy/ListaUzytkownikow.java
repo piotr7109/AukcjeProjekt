@@ -19,11 +19,11 @@ public class ListaUzytkownikow extends ServletMain
 	protected ArrayList<Object> uzytkownicy;
 	protected int ile_uzytkownikow;
 	
-	public ListaUzytkownikow() 
+	public ListaUzytkownikow()  
 	{
 		super();
-		 
-		page_url = "views/ListaUzytkownikow.html";
+		
+		page_url = "views/ListaUzytkownikow.html";   
 	}
 	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {

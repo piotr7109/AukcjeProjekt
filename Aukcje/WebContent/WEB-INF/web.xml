@@ -41,7 +41,7 @@
     <servlet-class>controllers.aukcje.DodajAukcje</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Dodawanie aukcji</servlet-name>
+    <servlet-name>Dodawanie aukcji</servlet-name> 
     <url-pattern>/dodaj_aukcje</url-pattern>
   </servlet-mapping>
   

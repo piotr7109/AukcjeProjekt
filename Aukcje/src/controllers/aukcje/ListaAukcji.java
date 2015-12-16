@@ -7,13 +7,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.Komunikaty;
 import main.ServletMain;
 import modules.aukcje.Aukcja;
 import modules.aukcje.AukcjaLista;
 
 public class ListaAukcji extends ServletMain 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected ArrayList<Object> aukcje;
 	protected int ile_aukcji;
 	
@@ -44,7 +47,7 @@ public class ListaAukcji extends ServletMain
     		html +=String.format("<td>%d</td>", (i+1));
     		html +=String.format("<td>%s</td>", au.getNazwa());
     		html +=String.format("<td>%s</td>", au.getDataZakonczenia());
-    		html +=String.format("<td></td>");
+    		html +=String.format("<td><a><span class='glyphicon glyphicon-search'></span></a></td>");
     		
     		html +="</tr>";
     	}

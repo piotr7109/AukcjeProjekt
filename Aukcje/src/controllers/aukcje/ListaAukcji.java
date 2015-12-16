@@ -10,6 +10,6 @@ public class ListaAukcji extends ServletMain
 	public ListaAukcji() {
 		super();
 		
-		page_url = page_url = "views/ListaAukcji.html";
+		page_url = "views/ListaAukcji.html";
 	}
 }

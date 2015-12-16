@@ -104,7 +104,7 @@ public class ServletMain extends HttpServlet
     }
     protected String getHtmlNiezalogowany()
     {
-    	return Komunikaty.getError("Nie masz dostÄ™pu do tej zawartoÅ›ci!");
+    	return Komunikaty.getError("Nie masz dostêpu do tej zawartoœci!");
     }
     protected String getHtmlMenuUnlogged()
     {

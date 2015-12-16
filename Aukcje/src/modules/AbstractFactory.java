@@ -35,7 +35,6 @@ abstract public class AbstractFactory
 				query = String.format("SELECT * FROM %s where id=%d", tabela, id);
 			
 			ResultSet rs = stmt.executeQuery( query );
-			System.out.println(query);
 			while ( rs.next() ) 
 			{
 				object = fetchObject(rs);

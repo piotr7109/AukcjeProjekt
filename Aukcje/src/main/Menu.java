@@ -26,10 +26,11 @@ public final class Menu
 	{
 		String html ="";
     	html +=getMenuIn();
-    	
+    	html +="<li><a href='lista_aukcji'><span style='color:red' class='glyphicon glyphicon-plus'></span> Lista aukcji</a></li>";
+    	html +="<li><a href='dodaj_aukcje'><span style='color:red' class='glyphicon glyphicon-plus'></span> Dodaj Aukcjê</a></li>";
 		html +="<li role='separator' class='divider'></li>";
 	    html +="<li><a href='logowanie?mode=10'><span style='color:red' class='glyphicon glyphicon-log-out'></span> Wyloguj</a></li>";
-	    html +="<li><a href='dodaj_aukcje'><span style='color:red' class='glyphicon glyphicon-log-out'></span> Dodaj Aukcjê</a></li>";
+	    
 	    html +=getMenuOut();
     	return html;
 	}
@@ -37,6 +38,7 @@ public final class Menu
 	{
 		String html ="";
     	html +=getMenuIn();
+    	html +="<li><a href='lista_aukcji'><span style='color:red' class='glyphicon glyphicon-plus'></span> Lista aukcji</a></li>";
     	html +="<li><a href='rejestracja'><span style='color:red' class='glyphicon glyphicon-log-in'></span> Rejestracja</a></li>"; 
 		html +="<li role='separator' class='divider'></li>";
 		html +="<li><a href='logowanie'><span style='color:red' class='glyphicon glyphicon-log-in'></span> Zaloguj</a></li>"; 

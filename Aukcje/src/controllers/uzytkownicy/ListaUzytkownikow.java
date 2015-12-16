@@ -22,7 +22,7 @@ public class ListaUzytkownikow extends ServletMain
 	public ListaUzytkownikow() 
 	{
 		super();
-		
+		 
 		page_url = "views/ListaUzytkownikow.html";
 	}
 	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

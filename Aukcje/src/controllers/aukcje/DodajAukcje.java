@@ -16,7 +16,7 @@ import modules.przedmioty.Przedmiot;
 
 public class DodajAukcje extends ServletMain
 {
-
+	//komentarz
 	private static final long serialVersionUID = 1L;
 	
 	private Aukcja aukcja;

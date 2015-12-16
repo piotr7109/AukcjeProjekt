@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Aukcje">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes/" source-path="/ImportedClasses"/>
+        <dependent-module archiveName="postgresql-9.4-1206-jdbc41.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/postgresql-9.4-1206-jdbc41/postgresql-9.4-1206-jdbc41">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="Aukcje"/>
+        <property name="java-output-path" value="/Aukcje/build/classes"/>
+    </wb-module>
+</project-modules>

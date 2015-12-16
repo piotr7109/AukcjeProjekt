@@ -1,0 +1,57 @@
+.button-menu
+{
+
+	top:-12px;
+}
+.jg-panel
+{
+	height: 65px;
+}
+.main-dropdown-menu
+{
+	margin: 2px -114px 0;
+}
+.panel h5
+{
+
+	padding-left: 10px;
+}
+
+.box-shadow-first
+{
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.box-shadow-last
+{
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}	
+.kalendarz
+{
+
+
+}
+td,th
+{
+	text-align:center;
+}
+.administracja h5 span.label
+{
+	margin-right:5px;
+}
+
+@media (max-width: 992px) and (min-width: 501px)
+{
+	.button-menu 
+	{
+    	margin-left: -2.5em;
+	}	
+}
+@media (max-width: 500px)
+{
+	.button-menu 
+	{
+    	margin-left: -3.3em;
+	}	
+}

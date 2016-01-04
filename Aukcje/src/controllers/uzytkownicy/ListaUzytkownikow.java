@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.ServletMain;
-import modules.aukcje.AukcjaLista;
 import modules.uzytkownicy.UzytkownicyLista;
 import modules.uzytkownicy.Uzytkownik;
 import modules.uzytkownicy.UzytkownikFactory;

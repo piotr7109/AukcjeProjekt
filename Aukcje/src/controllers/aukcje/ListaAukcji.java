@@ -23,14 +23,14 @@ public class ListaAukcji extends ServletMain
 	public ListaAukcji() 
 	{
 		super();
-		AukcjaLista a_lista = new AukcjaLista();
-		aukcje = a_lista.getList();
-		ile_aukcji = aukcje.size();
 		page_url = "views/ListaAukcji.html";
 	}
 	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
     	html = String.format(this.getHtml(page_url),  this.getRightHtml());
+    	AukcjaLista a_lista = new AukcjaLista();
+		aukcje = a_lista.getList();
+		ile_aukcji = aukcje.size();
     	initServlet();
     }
 	

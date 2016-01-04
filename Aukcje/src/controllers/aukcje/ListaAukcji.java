@@ -25,7 +25,7 @@ public class ListaAukcji extends ServletMain
 		super();
 		page_url = "views/ListaAukcji.html";
 	}
-	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
     	html = String.format(this.getHtml(page_url),  this.getRightHtml());
     	AukcjaLista a_lista = new AukcjaLista();

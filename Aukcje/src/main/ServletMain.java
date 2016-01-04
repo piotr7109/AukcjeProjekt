@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ServletMain extends HttpServlet 
+public class ServletMain extends HttpServlet implements InterfaceMain
 {
     private static final long serialVersionUID = 1L;
     protected Sesja sesja;
@@ -90,7 +90,7 @@ public class ServletMain extends HttpServlet
     	doRequest(request, response);
     }
     
-    protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
     	initServlet();
     }

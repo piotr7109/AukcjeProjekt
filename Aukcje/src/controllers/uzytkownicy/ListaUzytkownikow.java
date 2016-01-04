@@ -25,7 +25,7 @@ public class ListaUzytkownikow extends ServletMain
 		
 		page_url = "views/ListaUzytkownikow.html";    
 	}
-	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
 		this.setUzytkownicy();
 		switch(mode)

@@ -32,7 +32,7 @@ public class DodajAukcje extends ServletMain
 		return true;
 	}
 	
-	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
     	switch(mode)
     	{

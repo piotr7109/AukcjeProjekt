@@ -26,7 +26,7 @@ public class Rejestracja extends ServletMain
      * W tej funkcji nale¿y wykonaæ wszystkie dzia³ania na GET i POST
      */
 
-    protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
     	switch(mode)
     	{

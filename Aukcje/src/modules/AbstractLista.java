@@ -7,8 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import main.PostgreSQLJDBC;
-import modules.aukcje.Aukcja;
-import modules.aukcje.AukcjaFactory;
 
 abstract public class AbstractLista
 {

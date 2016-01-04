@@ -29,7 +29,7 @@ public class DodajAukcje extends ServletMain
 	
 	protected boolean authRequired()
 	{
-		return true;
+		return false;
 	}
 	
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

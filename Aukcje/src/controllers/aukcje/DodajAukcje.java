@@ -19,7 +19,7 @@ public class DodajAukcje extends ServletMain
 	private Aukcja aukcja;
 	private Przedmiot przedmiot;
 
-	public DodajAukcje()
+	public DodajAukcje() 
     {
     	super();
     	page_url = "forms/DodajAukcjeForm.html";

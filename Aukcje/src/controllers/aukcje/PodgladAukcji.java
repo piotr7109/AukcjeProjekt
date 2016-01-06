@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.Komunikaty;
 import main.ServletMain;
 import modules.aukcje.Aukcja;
 import modules.aukcje.AukcjaFactory;
@@ -16,7 +17,7 @@ public class PodgladAukcji extends ServletMain
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id_aukcji;
+	private Aukcja aukcja;
 	
 	public PodgladAukcji() 
 	{
@@ -25,18 +26,35 @@ public class PodgladAukcji extends ServletMain
 	}
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-		id_aukcji = Integer.getInteger(request.getParameter("id_aukcji"));
-		// pobraæ obiek z bazy
+		int id_aukcji = Integer.parseInt(request.getParameter("id_aukcji"));
+			
+		
 		AukcjaFactory a_factory = new AukcjaFactory();
 		a_factory.setId(id_aukcji);
-		Aukcja aukcja = (Aukcja)a_factory.getObject();
-		
-		
-		
-		
-		
-		html = this.getHtml(page_url);
+		aukcja = (Aukcja)a_factory.getObject();
+		if(testy() == "AUKCJA_NIE_ISTNIEJE")
+		{
+			html = Komunikaty.getError("Aukcja o podanym identyfikatorze nie istnieje!");
+		}
+		else
+		{
+			
+			getRightHtml();
+		}
     	initServlet();
     }
+	private void getRightHtml()
+	{
+		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa());
+	}
+	private String testy()
+	{
+		
+		if(aukcja == null)
+		{
+			return "AUKCJA_NIE_ISTNIEJE";
+		}
+		return "";
+	}
 	
 }

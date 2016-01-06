@@ -46,7 +46,7 @@ public class ListaAukcji extends ServletMain
     		html +=String.format("<td>%d</td>", (i+1));
     		html +=String.format("<td>%s</td>", au.getNazwa());
     		html +=String.format("<td>%s</td>", au.getDataZakonczenia());
-    		html +=String.format("<td><a><span class='glyphicon glyphicon-search'></span></a></td>");
+    		html +=String.format("<td><a href=podglad_aukcji?id_aukcji=%d><span class='glyphicon glyphicon-search'></span></a></td>", au.getId());
     		
     		html +="</tr>";
     	}

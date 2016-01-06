@@ -55,7 +55,7 @@ public class PodgladAukcji extends ServletMain
 		
 		Przedmiot przedmiot = aukcja.getPrzedmiot();
 		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(), przedmiot.getNazwa(),
-				"http://www.dfv.pl/tl_files/dfv/Poradniki/Szkola_dfv/Jak_zrobi%C5%82em_to_zdj%C4%99cie/Zabaewa/P1352dfv.jpg", 
+				"/img/obr_1.jpg", 
 				"aktualna_cena","ostatnie_przebicie",aukcja.getDataZakonczenia(), aukcja.getId(), 
 				 przedmiot.getOpis());
 	}

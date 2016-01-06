@@ -10,6 +10,7 @@ import main.Komunikaty;
 import main.ServletMain;
 import modules.aukcje.Aukcja;
 import modules.aukcje.AukcjaFactory;
+import modules.przedmioty.Przedmiot;
 
 public class PodgladAukcji extends ServletMain 
 {
@@ -45,8 +46,10 @@ public class PodgladAukcji extends ServletMain
     }
 	private void getRightHtml()
 	{
+		Przedmiot przedmiot = aukcja.getPrzedmiot();
 		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(),
-				"http://www.dfv.pl/tl_files/dfv/Poradniki/Szkola_dfv/Jak_zrobi%C5%82em_to_zdj%C4%99cie/Zabaewa/P1352dfv.jpg", this.aukcja.getDataRozpoczecia());
+				"http://www.dfv.pl/tl_files/dfv/Poradniki/Szkola_dfv/Jak_zrobi%C5%82em_to_zdj%C4%99cie/Zabaewa/P1352dfv.jpg", 
+				"aktualna_cena","ostatnie_przebicie",aukcja.getDataZakonczenia(), aukcja.getId(), przedmiot.getOpis());
 	}
 	private String testy()
 	{

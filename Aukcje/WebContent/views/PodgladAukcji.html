@@ -7,9 +7,52 @@
 		<img src="%s">
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aukcja-kontrolki">
-			<div class="col-lg-12 col-md-12">
-			%s
+			<div class="col-lg-12 col-md-12" id="aktualna-cena">
+				<div  class="col-lg-6 col-md-6">
+					Aktualna cena
+				</div>
+				<div  class="col-lg-6 col-md-6">
+				%s
+				</div>
 			</div>
+			<div class="col-lg-12 col-md-12" id="ostatnie-przebicie">
+				<div  class="col-lg-6 col-md-6">
+					Ostatnie przebicie
+				</div>
+				<div class="col-lg-6 col-md-6">
+				%s
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12" id="data-zakonczenia">
+				<div  class="col-lg-6 col-md-6">
+					Data zakoñczenia
+				</div>
+				<div  class="col-lg-6 col-md-6">
+				%s
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12">
+				<form method="POST">
+					<input type="hidden" value="0" name="mode" id="mode"></input>
+					<div id="wartosc-przebicia" class="col-lg-6 col-md-6">
+						<input type="text" class="form-control" placeholder="Wartoœæ przebicia" name="wartosc_przebicia" required="">
+					</div>
+					<div id="przebij" class="col-lg-6 col-md-6">
+						<button  type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Licytuj</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-lg-12 col-md-12">
+				<div class="col-lg-6 col-md-6">
+					
+				</div>
+				<div id="ustaw-automat" class="col-lg-6 col-md-6">
+					<a href="ustaw_automat?id_aukcji=%s"><button class="btn btn-primary">Ustaw automat</button></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 aukcja-opis">
+			%s
 		</div>
 	</div>
 </div>

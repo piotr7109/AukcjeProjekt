@@ -56,4 +56,13 @@
     <servlet-name>Podgląd aukcji</servlet-name>
     <url-pattern>/podglad_aukcji</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Uzytkownik</servlet-name>
+    <servlet-class>controllers.uzytkownicy.UzytkownikPodglad</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Uzytkownik</servlet-name>
+    <url-pattern>/uzytkownik</url-pattern>
+  </servlet-mapping>
 </web-app>

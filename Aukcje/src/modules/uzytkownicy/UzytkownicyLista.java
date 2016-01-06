@@ -14,11 +14,9 @@ public class UzytkownicyLista extends AbstractLista
 	
 	protected Object fetchObject(ResultSet rs) throws SQLException
 	{
+		Uzytkownik u = new Uzytkownik();
+		u.setId(rs.getInt("id"));
 		
-		UzytkownikFactory u_factory = new UzytkownikFactory();
-		u_factory.setId(rs.getInt("id"));
-		
-		Uzytkownik uzytkownik = (Uzytkownik)u_factory.getObject();
-		return uzytkownik;
+		return u;
 	}
 }

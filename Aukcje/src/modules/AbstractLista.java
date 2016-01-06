@@ -20,7 +20,7 @@ abstract public class AbstractLista
 		try
 		{
 			stmt = c.createStatement();
-			String query = String.format("SELECT id FROM %s", table);
+			String query = String.format("SELECT * FROM %s", table);
 			
 			ResultSet rs = stmt.executeQuery( query );
 			while ( rs.next() ) 

@@ -70,9 +70,10 @@ public class ListaUzytkownikow extends ServletMain
     {
     	String html ="";
     	Uzytkownik uz;
-    	String operacje ="";
+    	
     	for(int i=0; i< this.ile_uzytkownikow; i++)
     	{
+    		String operacje ="";
     		uz = (Uzytkownik)uzytkownicy.get(i);
     		html +="<tr>";
     		

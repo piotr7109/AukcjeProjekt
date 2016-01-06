@@ -87,7 +87,7 @@ public class DodajAukcje extends ServletMain
 		prz.setNazwa(request.getParameter("nazwa_przedmiotu"));
 		prz.setOpis(request.getParameter("opis"));
 		
-		///zapis pliku na serwer
+		///zapis pliku na serwer 
 		
 		//request.getParameter("zdjecie");
 		

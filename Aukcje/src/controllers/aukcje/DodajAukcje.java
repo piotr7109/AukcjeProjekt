@@ -39,6 +39,8 @@ public class DodajAukcje extends ServletMain
 	
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+		System.out.println(mode+"   "+request.getParameter("mode"));
+		
     	switch(mode)
     	{
 			case 0:

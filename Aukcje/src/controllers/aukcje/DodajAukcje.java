@@ -83,16 +83,12 @@ public class DodajAukcje extends ServletMain
 		Date data_zakonczenia = Date.valueOf(request.getParameter("data_zakonczenia"));
 		aukcja.setDataZakonczenia(data_zakonczenia);
 
-		Przedmiot prz = new Przedmiot();
-		prz.setNazwa(request.getParameter("nazwa_przedmiotu"));
-		prz.setOpis(request.getParameter("opis"));
 		
-		///zapis pliku na serwer 
-		//request.getParameter("zdjecie");
+
 		File source = new File(request.getParameter("zdjecie"));
 		String nazwa_pliku = "zdjecie_"+ String.valueOf((int)(Math.random()*10000));
-		File dest = new File("C:\\xampp\\tomcat\\" + nazwa_pliku);
-		//MultipartRequest multipartRequest = new MultipartRequest(request, dest);
+		File dest = new File("C:\\xampp\\tomcat\\" + nazwa_pliku +".jpg");
+
 
 		try
 		{
@@ -103,6 +99,11 @@ public class DodajAukcje extends ServletMain
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		Przedmiot prz = new Przedmiot();
+		prz.setNazwa(request.getParameter("nazwa_przedmiotu"));
+		prz.setOpis(request.getParameter("opis"));
+		prz.setZdjecieSrc("C:\\xampp\\tomcat\\" + nazwa_pliku +".jpg");
 		
 
 		

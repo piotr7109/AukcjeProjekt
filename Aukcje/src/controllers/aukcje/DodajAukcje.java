@@ -34,7 +34,7 @@ public class DodajAukcje extends ServletMain
 	
 	protected boolean authRequired()
 	{
-		return false;
+		return true;
 	}
 	
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -59,7 +59,6 @@ public class DodajAukcje extends ServletMain
 	private void zapiszAukcje(Aukcja aukcja)
 	{
 		Przedmiot przedmiot = aukcja.getPrzedmiot();
-		przedmiot.setZdjecieSrc("/");
 		przedmiot.insertPrzedmiot();
 		int id_przedmiotu = przedmiot.getLastId();
 		przedmiot.setId(id_przedmiotu);
@@ -87,7 +86,7 @@ public class DodajAukcje extends ServletMain
 
 		File source = new File(request.getParameter("zdjecie"));
 		String nazwa_pliku = "zdjecie_"+ String.valueOf((int)(Math.random()*10000));
-		File dest = new File("C:\\xampp\\tomcat\\" + nazwa_pliku +".jpg");
+		File dest = new File("/images/" + nazwa_pliku +".jpg");
 
 
 		try
@@ -103,7 +102,7 @@ public class DodajAukcje extends ServletMain
 		Przedmiot prz = new Przedmiot();
 		prz.setNazwa(request.getParameter("nazwa_przedmiotu"));
 		prz.setOpis(request.getParameter("opis"));
-		prz.setZdjecieSrc("C:\\xampp\\tomcat\\" + nazwa_pliku +".jpg");
+		prz.setZdjecieSrc("/images/" + nazwa_pliku +".jpg");
 		
 
 		

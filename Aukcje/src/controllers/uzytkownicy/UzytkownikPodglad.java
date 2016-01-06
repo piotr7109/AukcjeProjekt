@@ -10,7 +10,7 @@ import main.ServletMain;
 import modules.uzytkownicy.Uzytkownik;
 import modules.uzytkownicy.UzytkownikFactory;
 
-public class UzytkownikPodglad extends ServletMain
+public class UzytkownikPodglad extends ServletMain 
 { 
 	public UzytkownikPodglad()
 	{

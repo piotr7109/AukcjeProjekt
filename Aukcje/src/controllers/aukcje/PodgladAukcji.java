@@ -46,7 +46,7 @@ public class PodgladAukcji extends ServletMain
 		else
 		{
 			
-			getRightHtml();
+			getRightHtml(); 
 		}
     	initServlet();
     }

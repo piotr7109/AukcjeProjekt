@@ -1,11 +1,16 @@
 package controllers.aukcje;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.FileUtils;
+
+//import org.apache.commons.io.FileUtils;
 
 import main.Komunikaty;
 import main.ServletMain;
@@ -40,15 +45,10 @@ public class DodajAukcje extends ServletMain
 				html = String.format(this.getHtml(page_url), "", "", "", "", "", "");
 				break;
 			case 1:
-				this.aukcja = this.getAukcjaFromRequest(request);
-		    	this.przedmiot = this.aukcja.getPrzedmiot();
-		    	html = this.getRightHtml();
-				break;
-			case 2:
 				this.zapiszAukcje(getAukcjaFromRequest(request));
 				html = this.getRightHtml();
 				break;
-			case 3:
+			case 2:
 				html = this.getRightHtml();
 				break;
 				
@@ -88,8 +88,23 @@ public class DodajAukcje extends ServletMain
 		prz.setOpis(request.getParameter("opis"));
 		
 		///zapis pliku na serwer 
-		
 		//request.getParameter("zdjecie");
+		File source = new File(request.getParameter("zdjecie"));
+		String nazwa_pliku = "zdjecie_"+ String.valueOf((int)(Math.random()*10000));
+		File dest = new File("C:\\xampp\\tomcat\\" + nazwa_pliku);
+		//MultipartRequest multipartRequest = new MultipartRequest(request, dest);
+
+		try
+		{
+			FileUtils.copyFile(source,dest);
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
 		
 		//
 		aukcja.setPrzedmiot(prz);
@@ -104,19 +119,11 @@ public class DodajAukcje extends ServletMain
 		    case 0:
 		    	html = String.format(this.getHtml(page_url),  "", "", "", "");
 				break;
-				
-		    case 1: //wyœwietl zablokowane
-		    	
-		    	html = String.format(this.getHtml(page_url), aukcja.getNazwa(), aukcja.getDataZakonczenia(), 
-		    										przedmiot.getNazwa(), przedmiot.getOpis());
-		    	html +="<script src='form_helper.js'></script>";
-		    	break;
-		    	
-		    case 2:
+		    case 1:
 
-		    	html = "<script>window.location.replace('dodaj_aukcje?mode=3');</script>";
+		    	html = "<script>window.location.replace('dodaj_aukcje?mode=2');</script>";
 		    	break;
-		    case 3:
+		    case 2:
 		    	html = Komunikaty.getSukces("Twoje og³oszenie aukcyjne zosta³o pomyœlnie zapisane!");
 		    	break;
     	}

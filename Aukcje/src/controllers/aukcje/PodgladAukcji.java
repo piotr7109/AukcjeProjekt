@@ -45,7 +45,8 @@ public class PodgladAukcji extends ServletMain
     }
 	private void getRightHtml()
 	{
-		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa());
+		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(),
+				"http://www.dfv.pl/tl_files/dfv/Poradniki/Szkola_dfv/Jak_zrobi%C5%82em_to_zdj%C4%99cie/Zabaewa/P1352dfv.jpg", this.aukcja.getDataRozpoczecia());
 	}
 	private String testy()
 	{

@@ -3,7 +3,7 @@
 		<span class="glyphicon glyphicon-registration-mark"></span> Dodaj aukcjê
 	</div>
 	<div class="panel-body">
-		<form method="POST" class="fa navbar-form navbar-left form-singin form-horizontal">
+		<form method="POST" class="fa navbar-form navbar-left form-singin form-horizontal" >
 			<input type="hidden" value="0" name="mode" id="mode"></input>
 			
 			<h4 class="col-sm-12">Informacje ogólne:</h4>
@@ -28,6 +28,10 @@
 			<label class="control-label col-sm-4" for="opis">Opis przedmiotu:</label>
 			<div class="form-group col-sm-8">
 				<textarea class="form-control" placeholder="Opis przedmiotu" name="opis" required="">%s</textarea>
+			</div>
+			<label class="control-label col-sm-4" for="zdjecie">Zdjêcie:</label>
+			<div class="form-group col-sm-8">
+				 <input type="file" name="zdjecie" />
 			</div>
 			
 			<br><br>

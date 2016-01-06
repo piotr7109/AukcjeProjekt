@@ -13,7 +13,7 @@ import modules.uzytkownicy.UzytkownikFactory;
 public class UzytkownikPodglad extends ServletMain 
 { 
 	public UzytkownikPodglad()
-	{
+	{ 
 		super();
 		page_url = "views/Uzytkownik.html";
 	}

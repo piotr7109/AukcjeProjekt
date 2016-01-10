@@ -1,4 +1,4 @@
-package controllers.rejestracja;
+package controllers.uzytkownicy;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -68,7 +68,7 @@ public class EdycjaDanych extends ServletMain
 		switch (mode)
 		{
 		case 0:
-			html = String.format(this.getHtml(page_url), uz.getLogin(), uz.getHaslo(), uz.getImie(),
+			html = String.format(this.getHtml(page_url), uz.getLogin(), "", uz.getImie(),
 					uz.getNazwisko(), uz.getEmail(), uz.getAdres());
 			break;
 

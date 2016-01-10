@@ -68,7 +68,7 @@
   
    <servlet>
     <servlet-name>EdycjaDanych</servlet-name>
-    <servlet-class>controllers.rejestracja.EdycjaDanych</servlet-class>
+    <servlet-class>controllers.uzytkownicy.EdycjaDanych</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EdycjaDanych</servlet-name>

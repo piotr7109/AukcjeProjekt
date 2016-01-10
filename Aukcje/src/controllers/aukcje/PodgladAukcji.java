@@ -1,7 +1,10 @@
 package controllers.aukcje;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.Komunikaty;
+import main.PostgreSQLJDBC;
 import main.ServletMain;
 import modules.aukcje.Aukcja;
 import modules.aukcje.AukcjaFactory;
@@ -24,9 +28,13 @@ public class PodgladAukcji extends ServletMain
 	 */
 	private static final long serialVersionUID = 1L;
 	private Aukcja aukcja;
-	int wartosc_przebicia;
-	Przebicie przebicie;
-	PrzebicieLista przebicieLista;
+	private int wartosc_przebicia;
+	private Przebicie przebicie, przebicie_temp;
+	private int aktualna_cena;
+	private PrzebicieLista przebicie_lista;
+	private PostgreSQLJDBC postgre;
+	private Date data_przebicia;
+	
 	public PodgladAukcji() 
 	{
 		super();
@@ -35,7 +43,10 @@ public class PodgladAukcji extends ServletMain
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
 		int id_aukcji = Integer.parseInt(request.getParameter("id_aukcji"));
-			
+		
+		getOstatniePrzebicie();
+		this.data_przebicia = przebicie_temp.getDataPrzebicia();
+		this.aktualna_cena = przebicie_temp.getWartosc();
 		
 		AukcjaFactory a_factory = new AukcjaFactory();
 		a_factory.setId(id_aukcji);
@@ -57,7 +68,13 @@ public class PodgladAukcji extends ServletMain
 		if(mode == 1)
 		{
 			this.przebicie = getPrzebicieFromRequest(request);
-			przebicie.insertPrzebicie();
+			if(przebicie.getWartosc()>aktualna_cena)
+			{
+				przebicie.insertPrzebicie();
+				aktualna_cena=przebicie.getWartosc();
+			}
+			else
+				html=Komunikaty.getWarning("Podana cena jest zbyt niska, minimalne przebicie: " + aktualna_cena+1);
 			mode = 0;
 			//pobiera z formularza i ustawiæ przebicie 
 			// przekierowanie w argumencie podg¹d aukcji?id_aukcji = 
@@ -101,6 +118,37 @@ public class PodgladAukcji extends ServletMain
 			return "AUKCJA_NIE_ISTNIEJE";
 		}
 		return "";
+	}
+	private void getOstatniePrzebicie()
+	{
+		
+		przebicie_temp = new Przebicie();
+		String query = "";
+		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
+		Statement stmt;
+		Connection c = pgsq.getC(); 
+		try
+		{
+			stmt = c.createStatement();
+			if(query=="");
+				query = String.format("SELECT * from t_przebicia where id_aukcji = "+ request.getParameter("id_aukcji") +" order by wartosc DESC limit 1");
+		
+			ResultSet rs = stmt.executeQuery( query );
+			if(rs.next())
+			{
+				przebicie_temp.setWartosc(rs.getInt("wartosc"));
+				przebicie_temp.setDataPrzebicia(Date.valueOf(rs.getString("data_przebicia")));
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+
+		}
+		catch ( Exception e ) 
+		{
+			System.err.println(e.getClass().getName()+": "+ e.getMessage() );
+			System.exit(0);
+	    }
 	}
 	
 }

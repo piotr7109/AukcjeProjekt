@@ -90,7 +90,10 @@ public class EdycjaDanych extends ServletMain
 
 		return html;
 	}
-
+	 protected boolean authRequired()
+	 {
+	    return true;
+	 }
 	private void zapiszDaneUzytkownika(Uzytkownik uzyt)
 	{
 		uzyt.setId(id_uzytkownikaa);

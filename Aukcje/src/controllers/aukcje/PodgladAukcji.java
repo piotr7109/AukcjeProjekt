@@ -63,7 +63,7 @@ public class PodgladAukcji extends ServletMain
 		else
 		{
 			
-			getRightHtml(); 
+			html = getRightHtml(); 
 		}
 		if(mode == 1)
 		{
@@ -101,14 +101,15 @@ public class PodgladAukcji extends ServletMain
 		
 		return prz;
 	}
-	private void getRightHtml()
+	private String getRightHtml()
 	{
-		
+		String html = "";
 		Przedmiot przedmiot = aukcja.getPrzedmiot();
 		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(), przedmiot.getNazwa(),
 				"/img/obr_1.jpg", 
 				"aktualna_cena","ostatnie_przebicie",aukcja.getDataZakonczenia(), aukcja.getId(), 
 				 przedmiot.getOpis());
+		return html;
 	}
 	private String testy()
 	{

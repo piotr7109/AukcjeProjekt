@@ -1,4 +1,4 @@
-package controllers.rejestracja;
+package controllers.uzytkownicy;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ public class EdycjaDanych extends ServletMain
 	private UzytkownikFactory u_factory;
 	private int id_uzytkownikaa;
 	private Uzytkownik uz, temp_user;
-
+ 
 	public EdycjaDanych()
 	{
 		super();
@@ -68,7 +68,7 @@ public class EdycjaDanych extends ServletMain
 		switch (mode)
 		{
 		case 0:
-			html = String.format(this.getHtml(page_url), uz.getLogin(), uz.getHaslo(), uz.getImie(),
+			html = String.format(this.getHtml(page_url), uz.getLogin(), "", uz.getImie(),
 					uz.getNazwisko(), uz.getEmail(), uz.getAdres());
 			break;
 
@@ -90,7 +90,10 @@ public class EdycjaDanych extends ServletMain
 
 		return html;
 	}
-
+	 protected boolean authRequired()
+	 {
+	    return true;
+	 }
 	private void zapiszDaneUzytkownika(Uzytkownik uzyt)
 	{
 		uzyt.setId(id_uzytkownikaa);

@@ -14,10 +14,17 @@ public class AukcjaLista extends AbstractLista
 	protected Object fetchObject(ResultSet rs) throws SQLException
 	{
 		
-		AukcjaFactory a_factory = new AukcjaFactory();
-		a_factory.setId(rs.getInt("id"));
 		
-		Aukcja aukcja = (Aukcja)a_factory.getObject();
+		Aukcja aukcja = new Aukcja();
+		
+		aukcja.setId(rs.getInt("id"));
+		aukcja.setIdPrzedmiotu(rs.getInt("id_przedmiotu"));
+		aukcja.setIdUzytkownika(rs.getInt("id_uzytkownika"));
+		aukcja.setNazwa(rs.getString("nazwa"));
+		aukcja.setDataRozpoczecia(rs.getDate("data_rozpoczecia"));
+		aukcja.setDataZakonczenia(rs.getDate("data_zakonczenia"));
+		
+		
 		return aukcja;
 	}
 }

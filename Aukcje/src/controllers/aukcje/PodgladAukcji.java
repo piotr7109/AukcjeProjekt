@@ -1,6 +1,8 @@
 package controllers.aukcje;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,8 @@ import main.Komunikaty;
 import main.ServletMain;
 import modules.aukcje.Aukcja;
 import modules.aukcje.AukcjaFactory;
+import modules.przebicia.Przebicie;
+import modules.przebicia.PrzebicieLista;
 import modules.przedmioty.Przedmiot;
 import modules.przedmioty.PrzedmiotFactory;
 
@@ -20,7 +24,9 @@ public class PodgladAukcji extends ServletMain
 	 */
 	private static final long serialVersionUID = 1L;
 	private Aukcja aukcja;
-	
+	int wartosc_przebicia;
+	Przebicie przebicie;
+	PrzebicieLista przebicieLista;
 	public PodgladAukcji() 
 	{
 		super();
@@ -48,8 +54,36 @@ public class PodgladAukcji extends ServletMain
 			
 			getRightHtml(); 
 		}
+		if(mode == 1)
+		{
+			this.przebicie = getPrzebicieFromRequest(request);
+			przebicie.insertPrzebicie();
+			mode = 0;
+			//pobiera z formularza i ustawiæ przebicie 
+			// przekierowanie w argumencie podg¹d aukcji?id_aukcji = 
+			// sprawdziæ czy jest zalogowany
+			
+		}
     	initServlet();
     }
+	private Przebicie getPrzebicieFromRequest(HttpServletRequest request)
+	{
+		wartosc_przebicia = Integer.parseInt(request.getParameter("wartosc_przebicia"));
+		Przebicie prz = new Przebicie();
+		
+		prz.setWartosc(wartosc_przebicia);
+		
+		prz.setIdAukcji(Integer.parseInt(request.getParameter("id_aukcji")));
+		
+		prz.setIdUzytkownika(aukcja.getIdUzytkownika());
+		
+		Date current_date = new Date(Calendar.getInstance().getTime().getTime());
+		prz.setDataPrzebicia(current_date);
+		
+		
+		
+		return prz;
+	}
 	private void getRightHtml()
 	{
 		

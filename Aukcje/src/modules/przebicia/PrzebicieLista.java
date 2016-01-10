@@ -20,7 +20,7 @@ public class PrzebicieLista extends AbstractLista
 		prz.setIdAukcji(rs.getInt("id_aukcji"));
 		prz.setIdUzytkownika(rs.getInt("id_uzytkownika"));
 		prz.setDataPrzebicia(rs.getDate("data_przebicia"));
-		prz.setWartosc(rs.getDouble("wartosc"));
+		prz.setWartosc(rs.getInt("wartosc"));
 		
 		return prz;
 	}

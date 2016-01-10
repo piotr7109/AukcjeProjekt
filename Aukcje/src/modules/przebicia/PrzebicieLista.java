@@ -3,10 +3,9 @@ package modules.przebicia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.annotation.Generated;
 
 import modules.AbstractLista;
-import modules.uzytkownicy.Uzytkownik;
+
 
 public class PrzebicieLista extends AbstractLista
 {

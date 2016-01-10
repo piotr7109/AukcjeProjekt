@@ -16,7 +16,7 @@ public class EdycjaDanych extends ServletMain
 	private UzytkownikFactory u_factory;
 	private int id_uzytkownikaa;
 	private Uzytkownik uz, temp_user;
-
+ 
 	public EdycjaDanych()
 	{
 		super();

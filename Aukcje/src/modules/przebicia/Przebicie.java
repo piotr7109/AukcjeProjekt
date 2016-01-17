@@ -6,7 +6,8 @@ import main.PostgreSQLJDBC;
 
 public class Przebicie
 {
-	private int id, id_uzytkownika, id_aukcji, wartosc;
+	private int id, id_uzytkownika, id_aukcji;
+	private double wartosc;
 	private Date data_przebicia;
 
 	public int getId()
@@ -39,12 +40,12 @@ public class Przebicie
 		this.id_aukcji = id_aukcji;
 	}
 
-	public int getWartosc()
+	public double getWartosc()
 	{
 		return wartosc;
 	}
 
-	public void setWartosc(int wartosc)
+	public void setWartosc(double wartosc)
 	{
 		this.wartosc = wartosc;
 	}

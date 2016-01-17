@@ -30,7 +30,7 @@ public class PodgladAukcji extends ServletMain
 	private Aukcja aukcja;
 	private int wartosc_przebicia;
 	private Przebicie przebicie, przebicie_temp;
-	private int aktualna_cena;
+	private double aktualna_cena;
 	private PrzebicieLista przebicie_lista;
 	private PostgreSQLJDBC postgre;
 	private Date data_przebicia;
@@ -137,7 +137,7 @@ public class PodgladAukcji extends ServletMain
 			ResultSet rs = stmt.executeQuery( query );
 			if(rs.next())
 			{
-				przebicie_temp.setWartosc(rs.getInt("wartosc"));
+				przebicie_temp.setWartosc(rs.getDouble("wartosc"));
 				przebicie_temp.setDataPrzebicia(Date.valueOf(rs.getString("data_przebicia")));
 			}
 			rs.close();

@@ -1,8 +1,13 @@
 package modules.przebicia;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
+import org.postgresql.core.SetupQueryRunner;
+
+import main.PostgreSQLJDBC;
 import modules.AbstractFactory;
 import modules.aukcje.Aukcja;
 
@@ -12,22 +17,27 @@ public class PrzebicieFactory extends AbstractFactory
 	{
 		super();
 		tabela = "t_przbicia";
-		
+
 	}
-	
+
 	protected Object fetchObject(ResultSet rs) throws SQLException
 	{
 		Przebicie p = new Przebicie();
-		
+
 		p.setId(rs.getInt("id"));
 		p.setIdAukcji(rs.getInt("id_aukcji"));
 		p.setIdUzytkownika(rs.getInt("id_uzytkownika"));
 		p.setWartosc(rs.getDouble("wartosc"));
 		p.setDataPrzebicia(rs.getDate("data_przebicia"));
-		
+
 		return p;
 	}
-	
-	
-	
+
+	public Przebicie getOstatniePrzebicie(int id_aukcji)
+	{
+		query = String.format("SELECT * from t_przebicia where id_aukcji = %s order by data_przebicia DESC limit 1", id_aukcji);
+		Przebicie prz = (Przebicie) getObject();
+		return prz;
+	}
+
 }

@@ -7,7 +7,7 @@ import modules.AbstractLista;
 
 public class AutomatLista extends AbstractLista
 {
-	AutomatLista()
+	public AutomatLista()
 	{
 		table = "t_automaty";
 		

@@ -74,4 +74,13 @@
     <servlet-name>EdycjaDanych</servlet-name>
     <url-pattern>/edycja_danych</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Zakup Bicków</servlet-name>
+    <servlet-class>controllers.uzytkownicy.ZakupBickow</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Zakup Bicków</servlet-name>
+    <url-pattern>/zakup_bickow</url-pattern>
+  </servlet-mapping>
 </web-app>

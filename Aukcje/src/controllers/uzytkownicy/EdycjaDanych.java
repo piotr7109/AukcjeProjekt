@@ -16,7 +16,7 @@ public class EdycjaDanych extends ServletMain
 	private UzytkownikFactory u_factory;
 	private int id_uzytkownikaa;
 	private Uzytkownik uz, temp_user;
- 
+
 	public EdycjaDanych()
 	{
 		super();
@@ -28,35 +28,40 @@ public class EdycjaDanych extends ServletMain
 	 * W tej funkcji nale¿y wykonaæ wszystkie dzia³ania na GET i POST
 	 */
 
-	public void doRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
+	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		id_uzytkownikaa = Integer.parseInt(request.getParameter("id_uzytkownika"));
+		if (request.getParameter("id_uzytkownika") == null)
+		{
+			id_uzytkownikaa = sesja.getIdUzytkownika(request);
+		}
+		else
+		{
+			id_uzytkownikaa = Integer.parseInt(request.getParameter("id_uzytkownika"));
+		}
 		u_factory.setId(id_uzytkownikaa);
-
 
 		switch (mode)
 		{
-		case 0:
-			this.uz = (Uzytkownik) u_factory.getObject();
-			temp_user = uz;
-			html = this.getRightHtml();
-			break;
+			case 0:
+				this.uz = (Uzytkownik) u_factory.getObject();
+				temp_user = uz;
+				html = this.getRightHtml();
+				break;
 
-		case 1: // wyœwietl zablokowane
+			case 1: // wyœwietl zablokowane
 
-			this.uz = this.getUzytkownikFromRequest(request);
-			html = this.getRightHtml();
-			break;
+				this.uz = this.getUzytkownikFromRequest(request);
+				html = this.getRightHtml();
+				break;
 
-		case 2:
-			zapiszDaneUzytkownika(this.getUzytkownikFromRequest(request));
-			html = this.getRightHtml();
-			break;
+			case 2:
+				zapiszDaneUzytkownika(this.getUzytkownikFromRequest(request));
+				html = this.getRightHtml();
+				break;
 
-		case 3:
-			html = this.getRightHtml();
-			break;
+			case 3:
+				html = this.getRightHtml();
+				break;
 		}
 		initServlet();
 	}
@@ -67,33 +72,32 @@ public class EdycjaDanych extends ServletMain
 
 		switch (mode)
 		{
-		case 0:
-			html = String.format(this.getHtml(page_url), uz.getLogin(), "", uz.getImie(),
-					uz.getNazwisko(), uz.getEmail(), uz.getAdres());
-			break;
+			case 0:
+				html = String.format(this.getHtml(page_url), uz.getLogin(), "", uz.getImie(), uz.getNazwisko(), uz.getEmail(), uz.getAdres());
+				break;
 
-		case 1: // wyœwietl zablokowane
+			case 1: // wyœwietl zablokowane
 
-			html = String.format(this.getHtml(page_url), uz.getLogin(), uz.getHaslo(), uz.getImie(),
-					uz.getNazwisko(), uz.getEmail(), uz.getAdres());
-			html += "<script src='form_helper.js'></script>";
-			break;
+				html = String.format(this.getHtml(page_url), uz.getLogin(), uz.getHaslo(), uz.getImie(), uz.getNazwisko(), uz.getEmail(), uz.getAdres());
+				html += "<script src='form_helper.js'></script>";
+				break;
 
-		case 2:
-			html = "<script>window.location.replace('edycja_danych?id_uzytkownika="
-					+ id_uzytkownikaa + "&mode=3');</script>";
-			break;
-		case 3:
-			html = Komunikaty.getSukces("Dane zosta³y zmienione pomyœlnie");
-			break;
+			case 2:
+				html = "<script>window.location.replace('edycja_danych?id_uzytkownika=" + id_uzytkownikaa + "&mode=3');</script>";
+				break;
+			case 3:
+				html = Komunikaty.getSukces("Dane zosta³y zmienione pomyœlnie");
+				break;
 		}
 
 		return html;
 	}
-	 protected boolean authRequired()
-	 {
-	    return true;
-	 }
+
+	protected boolean authRequired()
+	{
+		return true;
+	}
+
 	private void zapiszDaneUzytkownika(Uzytkownik uzyt)
 	{
 		uzyt.setId(id_uzytkownikaa);

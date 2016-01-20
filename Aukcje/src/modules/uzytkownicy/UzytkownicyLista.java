@@ -21,6 +21,7 @@ public class UzytkownicyLista extends AbstractLista
 		u.setHaslo(rs.getString("haslo"));
 		u.setImie(rs.getString("imie"));
 		u.setNazwisko(rs.getString("nazwisko"));
+		u.setAdres(rs.getString("adres"));
 		u.setEmail(rs.getString("email"));
 		u.setStanKonta(rs.getInt("stan_konta"));
 		u.setStatus(rs.getString("status").charAt(0));

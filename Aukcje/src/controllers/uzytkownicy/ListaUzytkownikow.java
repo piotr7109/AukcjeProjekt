@@ -76,7 +76,6 @@ public class ListaUzytkownikow extends ServletMain
     		String operacje ="";
     		uz = (Uzytkownik)uzytkownicy.get(i);
     		html +="<tr>";
-    		
     		html +=String.format("<td>%d</td>", uz.getId());
     		html +=String.format("<td>%s</td>", uz.getLogin());
     		html +=String.format("<td>%s</td>", uz.getImie());
@@ -96,6 +95,7 @@ public class ListaUzytkownikow extends ServletMain
     		{
     			operacje +=String.format("<a href='lista_uzytkownikow?mode=10&id_uzytkownika=%d'>Usuñ</a>", uz.getId());
     		}
+    		operacje +=String.format("<a href='edycja_danych?id_uzytkownika=%d'>Edycja</a>", uz.getId());
     		html +=String.format("<td>%s</td>", operacje);
     		
     		html +="</tr>";

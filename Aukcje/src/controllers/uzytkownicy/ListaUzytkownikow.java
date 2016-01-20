@@ -46,7 +46,7 @@ public class ListaUzytkownikow extends ServletMain
 				Uzytkownik uzytkownik = (Uzytkownik)u_factory.getObject();
 				
 				uzytkownik.setStatus('Z');
-				uzytkownik.updateUzytkownik();
+				uzytkownik.aktywujUzytkownika();
 				
 				html = "<script>window.location.replace('lista_uzytkownikow');</script>";
 				break;

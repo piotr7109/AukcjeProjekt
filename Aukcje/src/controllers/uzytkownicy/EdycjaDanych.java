@@ -14,7 +14,7 @@ public class EdycjaDanych extends ServletMain
 {
 	private static final long serialVersionUID = 1L;
 	private UzytkownikFactory u_factory;
-	private int id_uzytkownikaa;
+	private int id_uzytkownika;
 	private Uzytkownik uz, temp_user;
 
 	public EdycjaDanych()
@@ -24,6 +24,7 @@ public class EdycjaDanych extends ServletMain
 		u_factory = new UzytkownikFactory();
 
 	}
+
 	/*
 	 * W tej funkcji nale¿y wykonaæ wszystkie dzia³ania na GET i POST
 	 */
@@ -31,17 +32,29 @@ public class EdycjaDanych extends ServletMain
 	{
 		return true;
 	}
+
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		UzytkownikFactory u_factory = new UzytkownikFactory();
+		u_factory.setId(sesja.getIdUzytkownika(request));
+		Uzytkownik uzytkownik = (Uzytkownik) u_factory.getObject();
 		if (request.getParameter("id_uzytkownika") == null)
 		{
-			id_uzytkownikaa = sesja.getIdUzytkownika(request);
+			id_uzytkownika = sesja.getIdUzytkownika(request);
 		}
 		else
 		{
-			id_uzytkownikaa = Integer.parseInt(request.getParameter("id_uzytkownika"));
+			if (uzytkownik.getStatus() != 'A' && uzytkownik.getId() != Integer.parseInt(request.getParameter("id_uzytkownika")))
+			{
+				id_uzytkownika = sesja.getIdUzytkownika(request);
+			}
+			else
+			{
+				id_uzytkownika = Integer.parseInt(request.getParameter("id_uzytkownika"));
+				
+			}
 		}
-		u_factory.setId(id_uzytkownikaa);
+		u_factory.setId(id_uzytkownika);
 
 		switch (mode)
 		{
@@ -86,7 +99,7 @@ public class EdycjaDanych extends ServletMain
 				break;
 
 			case 2:
-				html = "<script>window.location.replace('edycja_danych?id_uzytkownika=" + id_uzytkownikaa + "&mode=3');</script>";
+				html = "<script>window.location.replace('edycja_danych?id_uzytkownika=" + id_uzytkownika + "&mode=3');</script>";
 				break;
 			case 3:
 				html = Komunikaty.getSukces("Dane zosta³y zmienione pomyœlnie");
@@ -96,11 +109,9 @@ public class EdycjaDanych extends ServletMain
 		return html;
 	}
 
-	
-
 	private void zapiszDaneUzytkownika(Uzytkownik uzyt)
 	{
-		uzyt.setId(id_uzytkownikaa);
+		uzyt.setId(id_uzytkownika);
 		uzyt.setStanKonta(this.temp_user.getStanKonta());
 		uzyt.setStatus(this.temp_user.getStatus());
 		uzyt.setBledneLogowania(this.temp_user.getBledneLogowania());

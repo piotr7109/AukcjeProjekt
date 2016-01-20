@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modules.uzytkownicy.Uzytkownik;
+import modules.uzytkownicy.UzytkownikFactory;
+
 public class ServletMain extends HttpServlet implements InterfaceMain
 {
     private static final long serialVersionUID = 1L;
@@ -116,8 +119,11 @@ public class ServletMain extends HttpServlet implements InterfaceMain
     }
     protected String getHtmlMenuLogged()
     {
+    	UzytkownikFactory uz_factory = new UzytkownikFactory();
+    	uz_factory.setId(sesja.getIdUzytkownika(request));
+    	Uzytkownik uz = (Uzytkownik)uz_factory.getObject();
     	String html ="";
-    	html +=Menu.getMenuLogged();
+    	html +=Menu.getMenuLogged(uz.getStatus());
     	
     	return html;
     	
@@ -128,17 +134,6 @@ public class ServletMain extends HttpServlet implements InterfaceMain
     protected boolean authRequired()
     {
     	return false;
-    }
-    /*
-     * W tej funkcji należy wykonać wszystkie działania na GET i POST
-     */
-    protected void doGetServlet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-    	
-    }
-    protected void doPostServlet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-    	
     }
     
     /*

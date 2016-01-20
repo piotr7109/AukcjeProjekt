@@ -27,7 +27,10 @@ public class EdycjaDanych extends ServletMain
 	/*
 	 * W tej funkcji nale¿y wykonaæ wszystkie dzia³ania na GET i POST
 	 */
-
+	protected boolean authRequired()
+	{
+		return true;
+	}
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		if (request.getParameter("id_uzytkownika") == null)
@@ -93,10 +96,7 @@ public class EdycjaDanych extends ServletMain
 		return html;
 	}
 
-	protected boolean authRequired()
-	{
-		return true;
-	}
+	
 
 	private void zapiszDaneUzytkownika(Uzytkownik uzyt)
 	{

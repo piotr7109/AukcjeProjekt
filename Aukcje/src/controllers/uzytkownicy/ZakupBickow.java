@@ -58,7 +58,7 @@ public class ZakupBickow extends ServletMain
 		Uzytkownik uz = (Uzytkownik) u_factory.getObject();
 		
 		uz.setStanKonta(uz.getStanKonta()+kwota);
-		uz.updateUzytkownik();
+		uz.dodajBicki();
 		
 	}
 

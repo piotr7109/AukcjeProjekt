@@ -122,6 +122,13 @@ public class Uzytkownik
 		pgsq.queryOpertaion(query);
 	}
 	
+	public void dodajBicki()
+	{
+		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
+		String query = String.format("UPDATE t_uzytkownicy set stan_konta = %d where id=%d", stan_konta, id);
+		pgsq.queryOpertaion(query);
+	}
+	
 	
 	
 	

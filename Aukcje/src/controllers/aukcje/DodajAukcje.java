@@ -104,6 +104,7 @@ public class DodajAukcje extends ServletMain
 		Przedmiot prz = new Przedmiot();
 		prz.setNazwa(request.getParameter("nazwa_przedmiotu"));
 		prz.setOpis(request.getParameter("opis"));
+		System.out.println(nazwa_pliku);
 		prz.setZdjecieSrc("/images/" + nazwa_pliku +".jpg");
 		
 

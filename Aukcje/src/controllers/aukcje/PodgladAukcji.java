@@ -104,7 +104,7 @@ public class PodgladAukcji extends ServletMain
 	{
 		String html = "";
 		Przedmiot przedmiot = aukcja.getPrzedmiot();
-		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(), przedmiot.getNazwa(), "/img/obr_1.jpg", "aktualna_cena", "ostatnie_przebicie", aukcja.getDataZakonczenia(), aukcja.getId(),
+		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(), przedmiot.getNazwa(), "C:"+przedmiot.getZdjecieSrc(), "aktualna_cena", "ostatnie_przebicie", aukcja.getDataZakonczenia(), aukcja.getId(),
 				przedmiot.getOpis());
 		return html;
 	}

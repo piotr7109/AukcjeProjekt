@@ -11,6 +11,11 @@ import main.PostgreSQLJDBC;
 abstract public class AbstractLista
 {
 	protected String table;
+	protected String query;
+	public AbstractLista()
+	{
+		query = "";
+	}
 	public ArrayList<Object> getList()
 	{
 		ArrayList<Object> objects = new ArrayList<Object>();
@@ -20,7 +25,8 @@ abstract public class AbstractLista
 		try
 		{
 			stmt = c.createStatement();
-			String query = String.format("SELECT * FROM %s", table);
+			if(query=="")
+				query = String.format("SELECT * FROM %s", table);
 			
 			ResultSet rs = stmt.executeQuery( query );
 			while ( rs.next() ) 

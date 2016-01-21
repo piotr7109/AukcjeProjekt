@@ -88,7 +88,7 @@ public class DodajAukcje extends ServletMain
 
 		File source = new File(request.getParameter("zdjecie"));
 		String nazwa_pliku = "zdjecie_"+ String.valueOf((int)(Math.random()*10000));
-		File dest = new File("/images/" + nazwa_pliku +".jpg");
+		File dest = new File("C:/images/" + nazwa_pliku +".jpg");
 
 
 		try
@@ -105,7 +105,7 @@ public class DodajAukcje extends ServletMain
 		prz.setNazwa(request.getParameter("nazwa_przedmiotu"));
 		prz.setOpis(request.getParameter("opis"));
 		System.out.println(nazwa_pliku);
-		prz.setZdjecieSrc("/images/" + nazwa_pliku +".jpg");
+		prz.setZdjecieSrc("C:/images/" + nazwa_pliku +".jpg");
 		
 
 		

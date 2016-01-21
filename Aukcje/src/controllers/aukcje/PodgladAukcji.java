@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hamcrest.core.IsSame;
+
 import main.Komunikaty;
 import main.PostgreSQLJDBC;
 import main.ServletMain;
@@ -41,11 +43,6 @@ public class PodgladAukcji extends ServletMain
 	{
 		super();
 		page_url = "views/PodgladAukcji.html";
-	}
-	@Override
-	protected boolean authRequired()
-	{
-		return true;
 	}
 
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -84,6 +81,12 @@ public class PodgladAukcji extends ServletMain
 			{
 				Przebicie przebicie = getPrzebicieFromRequest(request);
 				String przebicieTest = this.testyPrzebicie(przebicie);
+				
+				if(przebicieTest == "NIEZALOGOWANY")
+				{
+					html = Komunikaty.getWarning("Zaloguj siê, aby licytowaæ ");
+				}
+				
 				if(przebicieTest == "NISKA_CENA")	
 				{
 					html = Komunikaty.getWarning("Podana cena jest zbyt niska, minimalne przebicie: " + aktualna_cena + 1);
@@ -131,6 +134,10 @@ public class PodgladAukcji extends ServletMain
 	
 	private String testyPrzebicie(Przebicie prz)
 	{
+		if(!this.sprawdzSesje())
+		{
+			return "NIEZALOGOWANY";
+		}
 		if (prz.getWartosc() <= aktualna_cena)
 		{
 			return "NISKA_CENA";

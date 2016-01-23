@@ -47,8 +47,17 @@ public class DodajAukcje extends ServletMain
 				html = String.format(this.getHtml(page_url), "", "", "", "", "", "");
 				break;
 			case 1:
-				this.zapiszAukcje(getAukcjaFromRequest(request));
-				html = this.getRightHtml();
+				Aukcja aukcja = getAukcjaFromRequest(request);
+				if(aukcja == null)
+				{
+					mode = 0;
+					html +=this.getRightHtml();
+				}
+				else
+				{
+					this.zapiszAukcje(aukcja);
+					html = this.getRightHtml();
+				}
 				break;
 			case 2:
 				html = this.getRightHtml();
@@ -79,8 +88,23 @@ public class DodajAukcje extends ServletMain
 	private Aukcja getAukcjaFromRequest(HttpServletRequest request)
 	{
 		Aukcja aukcja = new Aukcja();
+		
+		
+		System.out.println("AAA"+request.getParameter("nazwa_aukcji") );
+		if(request.getParameter("nazwa_aukcji").equals(""))
+		{
+			html = Komunikaty.getError("Wpisz nazwê");
+			return null;
+		}
 		aukcja.setNazwa(request.getParameter("nazwa_aukcji"));
 		
+		if(request.getParameter("data_zakonczenia").equals(""))
+		{
+			html = Komunikaty.getError("Wpisz datê zakoñczenia");
+			return null;
+		}
+			
+				
 		Date data_zakonczenia = Date.valueOf(request.getParameter("data_zakonczenia"));
 		aukcja.setDataZakonczenia(data_zakonczenia);
 
@@ -102,6 +126,11 @@ public class DodajAukcje extends ServletMain
 		}
 		
 		Przedmiot prz = new Przedmiot();
+		if(request.getParameter("nazwa_przedmiotu").equals(""))
+		{
+			html = Komunikaty.getError("Wpisz nazwê dla przedmiotu");
+			return null;
+		}
 		prz.setNazwa(request.getParameter("nazwa_przedmiotu"));
 		prz.setOpis(request.getParameter("opis"));
 		System.out.println(nazwa_pliku);

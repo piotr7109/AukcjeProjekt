@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="style.css"/>
 <script src="jquery/jquery-1.10.2.js"></script>
 <script src="bootstrap/bootstrap.js"></script>
+<script src="tinymce/js/tinymce/tinymce.min.js"></script>
+<script src="js/edytor_tinymce.js"></script>
 <script src="modeIncrement.js"></script>
 </head>
 <body>

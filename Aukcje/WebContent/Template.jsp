@@ -25,9 +25,11 @@
 					Aukcje
 					</h4>
 				</div>
-				<%=request.getAttribute("menu")  %>
+				
 			</div>
 			<div class="panel-body">
+			<div id="menu"><ul><%=request.getAttribute("menu")  %></ul></div>
+			
 				<%=request.getAttribute("html")  %>
 			</div>
 		</div>

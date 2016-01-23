@@ -59,6 +59,7 @@ td,th
 #menu ul li a button.user
 {
 	background: #d0e9c6;
+	color:black;
 }
 #menu ul li#wyloguj a button.user
 {

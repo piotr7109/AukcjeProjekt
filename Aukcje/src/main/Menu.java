@@ -10,7 +10,7 @@ public final class Menu
 	{
 		String nazwy[] = {"Lista aukcji", "Dodaj aukcjê", "Kup BICKi", "Edytuj dane", "Wyloguj"};
 		String serwisy[] = {"lista_aukcji", "dodaj_aukcje" ,"zakup_bickow" ,"edycja_danych" ,"logowanie?mode=10"};
-		String ikony[] = {"plus", "plus", "plus", "user", "log-out"};
+		String ikony[] = {"list-alt", "plus", "euro", "user", "log-out"};
 		String klasy[] =  {"lista_aukcji", "dodaj_aukcje" ,"zakup_bickow" ,"edycja_danych" ,"wyloguj"};
 		
 		String html ="";
@@ -40,14 +40,14 @@ public final class Menu
 	{
 		String nazwy[] = { "Logowanie","Rejestracja","Lista aukcji"};
 		String serwisy[] = {"logowanie", "rejestracja" ,"lista_aukcji"};
-		String ikony[] = {"plus", "log-in", "log-in"};
+		String ikony[] = {"log-in", "registration-mark", "list-alt"};
 		String klasy[] = {"logowanie", "rejestracja" ,"lista_aukcji"};
 		String html ="";
 		
 		int size = nazwy.length;
 		for(int i=0; i< size; i++)
 		{
-			html +=String.format("<li id='%s'><a href='%s'><button type='button' class='btn'><span class='glyphicon glyphicon-%s'></span> %s</button></a></li>",
+			html +=String.format("<li id='%s'><a href='%s'><button type='button' class='btn user'><span class='glyphicon glyphicon-%s'></span> %s</button></a></li>",
 					klasy[i], serwisy[i], ikony[i], nazwy[i]);
 		}		
 		return html;

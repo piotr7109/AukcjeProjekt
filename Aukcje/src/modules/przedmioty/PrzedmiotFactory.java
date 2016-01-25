@@ -24,6 +24,12 @@ public class PrzedmiotFactory extends AbstractFactory
 		
 		return przedmiot;
 	}
+	public Przedmiot getLastInserted()
+	{
+		query = String.format("SELECT * from t_przedmioty order by id DESC limit 1");
+		Przedmiot prz = (Przedmiot) getObject();
+		return prz;
+	}
 	
 	
 }

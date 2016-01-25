@@ -62,8 +62,7 @@ public class UploadServlet extends ServletMain
     	request.setCharacterEncoding("UTF-8");
     	this.request = request;
     	this.response = response;
-    	String a = request.getParameter("nazwa_przedmiotu");
-    	System.out.println(a);
+    	
     	
     	
     	if (!ServletFileUpload.isMultipartContent(request))

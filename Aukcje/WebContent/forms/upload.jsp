@@ -12,10 +12,7 @@
 		
 		
         <form method="post" enctype="multipart/form-data" novalidate>
-        <label class="control-label col-sm-4" for="nazwa_przedmiotu">Nazwa przedmiotu:</label>
-			
-				<input type="text" class="form-control" placeholder="Nazwa przedmiotu" name="nazwa_przedmiotu" value="asde" required="">
-			
+        
       
         <input type="hidden" value="0" name="mode" id="mode">
             Select file to upload: <input type="file" name="uploadFile" />

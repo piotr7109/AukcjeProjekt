@@ -83,4 +83,16 @@
     <servlet-name>Zakup Bicków</servlet-name>
     <url-pattern>/zakup_bickow</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <display-name>UploadServlet</display-name>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>controllers.aukcje.UploadServlet</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/upload_servlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

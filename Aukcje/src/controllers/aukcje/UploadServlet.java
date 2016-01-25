@@ -38,7 +38,7 @@ public class UploadServlet extends ServletMain
 	{
 		// TODO Auto-generated constructor stub
 		super();
-		page_url = "forms/upload.jsp";
+		page_url = "forms/upload.html";
 	}
 
 	/**

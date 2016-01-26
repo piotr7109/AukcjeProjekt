@@ -155,13 +155,12 @@ public class DodajAukcje extends ServletMain
 		prz.setNazwa(request.getParameter("nazwa_przedmiotu"));
 		prz.setOpis(request.getParameter("opis"));
 
-		String nazwa_przedmiotu = zapiszPlik();
-		prz.setZdjecieSrc(nazwa_przedmiotu);
+	
+		prz.setZdjecieSrc("");
 		aukcja.setPrzedmiot(prz);
 		System.out.println(
 				aukcja.getId() + " " + aukcja.getIdUzytkownika() + " " + aukcja.getNazwa() + " " + aukcja.getIdPrzedmiotu() + " " + aukcja.getDataRozpoczecia() + " " + aukcja.getDataZakonczenia());
-		System.out.println(aukcja.getPrzedmiot().getId() + " " + aukcja.getPrzedmiot().getLastId() + " " + aukcja.getPrzedmiot().getNazwa() + " " + aukcja.getPrzedmiot().getOpis() + " "
-				+ aukcja.getPrzedmiot().getZdjecieSrc());
+		System.out.println(aukcja.getPrzedmiot().getId() + " " + aukcja.getPrzedmiot().getLastId() + " " + aukcja.getPrzedmiot().getNazwa() + " " + aukcja.getPrzedmiot().getOpis());
 		return aukcja;
 	}
 

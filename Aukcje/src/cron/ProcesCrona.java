@@ -1,6 +1,5 @@
 package cron;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -19,7 +18,7 @@ public class ProcesCrona implements ServletContextListener
 				{
 					while (true)
 					{
-						System.out.println("Thread running every second");
+						//System.out.println("Thread running every second");
 						Thread.sleep(1000);
 					}
 				}

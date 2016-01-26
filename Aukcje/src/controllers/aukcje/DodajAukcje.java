@@ -64,7 +64,7 @@ public class DodajAukcje extends ServletMain
     	request.setCharacterEncoding("UTF-8");
     	this.request = request;
     	this.response = response;
-    	zapiszPlik();
+    	//zapiszPlik();
     	Aukcja aukcja = getAukcjaFromRequest(request);
 		if (aukcja == null)
 		{

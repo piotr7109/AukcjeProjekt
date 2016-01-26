@@ -15,9 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 
 import main.Komunikaty;
 import main.ServletMain;
+import modules.przedmioty.Przedmiot;
+import modules.przedmioty.PrzedmiotFactory;
 @MultipartConfig
 /**
  * A Java servlet that handles file upload from client.
@@ -62,7 +65,8 @@ public class UploadServlet extends ServletMain
     	request.setCharacterEncoding("UTF-8");
     	this.request = request;
     	this.response = response;
-    	
+    	PrzedmiotFactory p_factory = new PrzedmiotFactory();
+    	Przedmiot przedmiot = p_factory.getLastInserted();
     	
     	
     	if (!ServletFileUpload.isMultipartContent(request))
@@ -110,9 +114,12 @@ public class UploadServlet extends ServletMain
 					if (!item.isFormField())
 					{
 						String fileName = new File(item.getName()).getName();
-						String filePath = uploadPath + File.separator + fileName;
+						String destFileName = setNazwa(fileName);
+						String filePath = uploadPath + File.separator + destFileName;
 						File storeFile = new File(filePath);
-						
+						przedmiot.setZdjecieSrc("upload/" + destFileName);
+						System.out.println(przedmiot.getZdjecieSrc());
+						System.out.println("ID przedmiotu to: " + przedmiot.getId());
 						// saves the file on disk
 						item.write(storeFile);
 					}
@@ -131,15 +138,26 @@ public class UploadServlet extends ServletMain
 				// ex.getMessage());
 			}
 			
-			
+			zapiszPrzedmiot(przedmiot);
 			html = Komunikaty.getSukces("DODANE!");
 			
 			//getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);
 			initServlet();
 			
     }
-	
-	
+	public void zapiszPrzedmiot(Przedmiot p)
+	{
+		p.updatePrzedmiot();
+	}
+	private String setNazwa(String input)
+	{
+		String nazwa = "upload/";
+		String ext = FilenameUtils.getExtension(input);
+		double a = Math.random()*100000;
+		String output = String.format("%05d", (int)a);
+		output += "." + ext;
+		return output;
+	}
 	
 	
 }

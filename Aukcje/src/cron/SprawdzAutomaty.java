@@ -17,7 +17,7 @@ public class SprawdzAutomaty
 	public static void sprawdz()
 	{
 		AukcjaLista lista_aukcji = new AukcjaLista();
-		ArrayList<Object> aukcje = lista_aukcji.getList();
+		ArrayList<Object> aukcje = lista_aukcji.getAktywneAukcje();
 		int ile_aukcji = aukcje.size();
 
 		PrzebicieFactory przebicie_factory = new PrzebicieFactory();
@@ -37,12 +37,12 @@ public class SprawdzAutomaty
 				Automat automat = (Automat) automaty.get(j);
 				if (automat.getIdUzytkownika() != ostatnie_przebicie.getIdUzytkownika())
 				{
-					if(automat.getMaxPrzebicie() > ostatnie_przebicie.getWartosc())
+					if(automat.getMaxPrzebicie() >= ostatnie_przebicie.getWartosc())
 					{
 						Przebicie przebicie = new Przebicie();
 						przebicie.setWartosc(ostatnie_przebicie.getWartosc()+1);
 						przebicie.setIdAukcji(aukcja.getId());
-						przebicie.setIdUzytkownika(aukcja.getIdUzytkownika());
+						przebicie.setIdUzytkownika(automat.getIdUzytkownika());
 
 						Date current_date = new Date(Calendar.getInstance().getTime().getTime());
 						przebicie.setDataPrzebicia(current_date);

@@ -121,7 +121,7 @@ public class PodgladAukcji extends ServletMain
 
 		prz.setWartosc(wartosc_przebicia);
 		prz.setIdAukcji(Integer.parseInt(request.getParameter("id_aukcji")));
-		prz.setIdUzytkownika(aukcja.getIdUzytkownika());
+		prz.setIdUzytkownika(sesja.getIdUzytkownika(request));
 
 		Date current_date = new Date(Calendar.getInstance().getTime().getTime());
 		prz.setDataPrzebicia(current_date);

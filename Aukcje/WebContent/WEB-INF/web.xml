@@ -104,6 +104,15 @@
     <url-pattern>/ustaw_automat</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>Wygrane aukcje</servlet-name>
+    <servlet-class>controllers.aukcje.WygraneAukcje</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Wygrane aukcje</servlet-name>
+    <url-pattern>/wygrane</url-pattern>
+  </servlet-mapping>
+  
   
   <listener>
     <listener-class>

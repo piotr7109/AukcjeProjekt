@@ -120,6 +120,7 @@ public class DodajAukcje extends ServletMain
 		java.util.Date date = new java.util.Date();
 		Date sqlDate = new Date(date.getTime());
 		aukcja.setDataRozpoczecia(sqlDate);
+		aukcja.setStan('A');
 
 		aukcja.insertAukcja();
 

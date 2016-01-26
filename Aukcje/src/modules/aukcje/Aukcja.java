@@ -14,6 +14,7 @@ public class Aukcja
 	private String nazwa;
 	private Date data_rozpoczecia;
 	private Date data_zakonczenia;
+	private char stan;
 	
 	public int getId()
 	{
@@ -72,20 +73,30 @@ public class Aukcja
 		this.id_przedmiotu = id_przedmiotu;
 	}
 	
+	
+	public char getStan()
+	{
+		return stan;
+	}
+	public void setStan(char stan)
+	{
+		this.stan = stan;
+	}
+	
 	public void insertAukcja()
 	{
 		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
-		String query = String.format("INSERT INTO t_aukcje(id_uzytkownika, id_przedmiotu, nazwa, data_rozpoczecia, data_zakonczenia)"
-									+" VALUES (%d, %d, '%s','%s','%s')",
-						id_uzytkownika, przedmiot.getId(), nazwa, data_rozpoczecia, data_zakonczenia);
+		String query = String.format("INSERT INTO t_aukcje(id_uzytkownika, id_przedmiotu, nazwa, data_rozpoczecia, data_zakonczenia, stan)"
+									+" VALUES (%d, %d, '%s','%s','%s', '%c')",
+						id_uzytkownika, przedmiot.getId(), nazwa, data_rozpoczecia, data_zakonczenia, stan);
 		pgsq.queryOpertaion(query);
 	}
 	public void updateAukcja()
 	{
 		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
 		String query = String.format("UPDATE t_aukcje SET id_uzytkownika = %d, id_przedmiotu = %d," +
-									"nazwa = '%s', data_rozpoczecia = '%s', data_zakonczenia = '%s' WHERE id=%d",
-									id_uzytkownika, przedmiot.getId(),nazwa, data_rozpoczecia, data_zakonczenia, id);
+									"nazwa = '%s', data_rozpoczecia = '%s', data_zakonczenia = '%s' stan='%c' WHERE id=%d",
+									id_uzytkownika, przedmiot.getId(),nazwa, data_rozpoczecia, data_zakonczenia, id, stan);
 		pgsq.queryOpertaion(query);
 	}
 	public void deleteAukcja()

@@ -95,4 +95,11 @@
     <url-pattern>/upload_servlet</url-pattern>
   </servlet-mapping>
   
+  
+  <listener>
+    <listener-class>
+            cron.ProcesCrona
+        </listener-class>
+  </listener>
+  
 </web-app>

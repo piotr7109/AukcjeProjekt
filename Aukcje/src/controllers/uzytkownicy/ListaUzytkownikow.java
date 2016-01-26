@@ -89,13 +89,13 @@ public class ListaUzytkownikow extends ServletMain
     		
     		if(uz.getStatus() == 'X')
     		{
-    			operacje +=String.format("<a href='lista_uzytkownikow?mode=20&id_uzytkownika=%d'>Aktywuj</a>", uz.getId());
+    			operacje +=String.format("<a href='lista_uzytkownikow?mode=20&id_uzytkownika=%d'><button class='btn btn-success'>Aktywuj</button></a><br>", uz.getId());
     		}
     		if(uz.getStatus() != 'A')
     		{
-    			operacje +=String.format("<a href='lista_uzytkownikow?mode=10&id_uzytkownika=%d'>Usuñ</a>", uz.getId());
+    			operacje +=String.format("<a href='lista_uzytkownikow?mode=10&id_uzytkownika=%d'><button class='btn btn-danger'>Usuñ</button></a><br>", uz.getId());
     		}
-    		operacje +=String.format("<a href='edycja_danych?id_uzytkownika=%d'>Edycja</a>", uz.getId());
+    		operacje +=String.format("<a href='edycja_danych?id_uzytkownika=%d'><button class='btn btn-warning'>Edycja</button></a>", uz.getId());
     		html +=String.format("<td>%s</td>", operacje);
     		
     		html +="</tr>";

@@ -2,6 +2,7 @@ package modules.automaty;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modules.AbstractLista;
 
@@ -22,6 +23,12 @@ public class AutomatLista extends AbstractLista
 		au.setIdUzytkownika(rs.getInt("id_uzytkownika"));
 		au.setMaxPrzebicie(rs.getInt("max_przebicie"));
 		
+		return au;
+	}
+	public ArrayList<Object> getAutomatyByAukcjaId(int id_aukcji)
+	{
+		query = String.format("select * FROM t_automaty where id_aukcji =  %d", id_aukcji);
+		ArrayList<Object> au = (ArrayList<Object>) getList();
 		return au;
 	}
 }

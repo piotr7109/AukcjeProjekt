@@ -45,14 +45,19 @@ public class Automat
 	{
 		this.max_przebicie = max_przebicie;
 	}
-	public void insertPrzebicie()
+
+	public void insert()
 	{
 		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
-		String query = String.format(
-				"INSERT INTO t_automaty( id_aukcji, id_uzytkownika, max_przebicie) VALUES(%d, %d, %d)",
-				id_aukcji, id_uzytkownika, max_przebicie);
+		String query = String.format("INSERT INTO t_automaty( id_aukcji, id_uzytkownika, max_przebicie) VALUES(%d, %d, %d)", id_aukcji, id_uzytkownika, max_przebicie);
 		pgsq.queryOpertaion(query);
 	}
-	
-	
+
+	public void deleteByAukcjaAndUzytkownikId()
+	{
+		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
+		String query = String.format("DELETE FROM t_automaty WHERE id_aukcji=%d AND id_uzytkownika=%d", id_aukcji, id_uzytkownika);
+		pgsq.queryOpertaion(query);
+	}
+
 }

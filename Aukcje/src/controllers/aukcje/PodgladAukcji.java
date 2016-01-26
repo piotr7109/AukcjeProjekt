@@ -47,14 +47,14 @@ public class PodgladAukcji extends ServletMain
 
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		html ="";
-		
+		html = "";
+
 		int id_aukcji = Integer.parseInt(request.getParameter("id_aukcji"));
 
 		AukcjaFactory a_factory = new AukcjaFactory();
 		a_factory.setId(id_aukcji);
 		aukcja = (Aukcja) a_factory.getObject();
-		
+
 		if (testy() == "AUKCJA_NIE_ISTNIEJE")
 		{
 			html = Komunikaty.getError("Aukcja o podanym identyfikatorze nie istnieje!");
@@ -64,10 +64,10 @@ public class PodgladAukcji extends ServletMain
 			PrzedmiotFactory p_factory = new PrzedmiotFactory();
 			p_factory.setId(aukcja.getIdPrzedmiotu());
 			aukcja.setPrzedmiot((Przedmiot) p_factory.getObject());
-			
+
 			PrzebicieFactory przebicie_factory = new PrzebicieFactory();
 			Przebicie ostatnie_przebicie = przebicie_factory.getOstatniePrzebicie(id_aukcji);
-			if(ostatnie_przebicie == null)
+			if (ostatnie_przebicie == null)
 			{
 				aktualna_cena = 0;
 				data_ostatniego_przebicia = "---";
@@ -81,21 +81,20 @@ public class PodgladAukcji extends ServletMain
 			{
 				Przebicie przebicie = getPrzebicieFromRequest(request);
 				String przebicieTest = this.testyPrzebicie(przebicie);
-				
-				if(przebicieTest == "NIEZALOGOWANY")
+
+				if (przebicieTest == "NIEZALOGOWANY")
 				{
 					html = Komunikaty.getWarning("Zaloguj siê, aby licytowaæ ");
 				}
-				
-				if(przebicieTest == "NISKA_CENA")	
+
+				if (przebicieTest == "NISKA_CENA")
 				{
 					html = Komunikaty.getWarning("Podana cena jest zbyt niska, minimalne przebicie: " + aktualna_cena + 1);
 				}
-				else if(przebicieTest == "BRAK_FUNDUSZY")
+				else if (przebicieTest == "BRAK_FUNDUSZY")
 				{
-					html = Komunikaty.getWarning("Niestety nie masz wystarczaj¹co du¿o œrodów na koncie. "
-												+ "Mo¿e to wynikaæ z udzia³u w innych aukcjach.<br>"
-												+ "<a href='zakup_bickow'>Uzupe³nij swoje konto, aby braæ udzia³ w aukcji.</a>");
+					html = Komunikaty.getWarning("Niestety nie masz wystarczaj¹co du¿o œrodów na koncie. " + "Mo¿e to wynikaæ z udzia³u w innych aukcjach.<br>"
+							+ "<a href='zakup_bickow'>Uzupe³nij swoje konto, aby braæ udzia³ w aukcji.</a>");
 				}
 				else
 				{
@@ -111,7 +110,7 @@ public class PodgladAukcji extends ServletMain
 			}
 			html += getRightHtml();
 		}
-		
+
 		initServlet();
 	}
 
@@ -130,11 +129,9 @@ public class PodgladAukcji extends ServletMain
 		return prz;
 	}
 
-	
-	
 	private String testyPrzebicie(Przebicie prz)
 	{
-		if(!this.sprawdzSesje())
+		if (!this.sprawdzSesje())
 		{
 			return "NIEZALOGOWANY";
 		}
@@ -142,25 +139,25 @@ public class PodgladAukcji extends ServletMain
 		{
 			return "NISKA_CENA";
 		}
-		else 
+		else
 		{
 			AukcjaLista a_lista = new AukcjaLista();
 			ArrayList<Object> aukcje = a_lista.getAukcjeUzytkownik(sesja.getIdUzytkownika(request));
 			int size = aukcje.size();
-			
+
 			int wartosc = 0;
 			PrzebicieFactory p_factory = new PrzebicieFactory();
-			for(int i=0; i< size; i++)
+			for (int i = 0; i < size; i++)
 			{
-				Aukcja au = (Aukcja)aukcje.get(i);
-				Przebicie p = p_factory.getOstatniePrzebicieUzytkownika(au.getId(), sesja.getIdUzytkownika(request) );
+				Aukcja au = (Aukcja) aukcje.get(i);
+				Przebicie p = p_factory.getOstatniePrzebicieUzytkownika(au.getId(), sesja.getIdUzytkownika(request));
 				wartosc += p.getWartosc();
 			}
-			wartosc+=prz.getWartosc();
+			wartosc += prz.getWartosc();
 			UzytkownikFactory u_factory = new UzytkownikFactory();
 			u_factory.setId(sesja.getIdUzytkownika(request));
-			Uzytkownik uz = (Uzytkownik)u_factory.getObject();
-			if(wartosc > uz.getStanKonta())
+			Uzytkownik uz = (Uzytkownik) u_factory.getObject();
+			if (wartosc > uz.getStanKonta())
 			{
 				return "BRAK_FUNDUSZY";
 			}
@@ -177,12 +174,13 @@ public class PodgladAukcji extends ServletMain
 		}
 		return "";
 	}
+
 	private String getRightHtml()
 	{
 		String html = "";
 		Przedmiot przedmiot = aukcja.getPrzedmiot();
-		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(), przedmiot.getNazwa(), przedmiot.getZdjecieSrc(), aktualna_cena+" pkt BICK", data_ostatniego_przebicia, aukcja.getDataZakonczenia(), aukcja.getId(),
-				przedmiot.getOpis());
+		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(), przedmiot.getNazwa(), przedmiot.getZdjecieSrc(), aktualna_cena + " pkt BICK", data_ostatniego_przebicia,
+				aukcja.getDataZakonczenia(), aukcja.getId(), przedmiot.getOpis());
 		return html;
 	}
 

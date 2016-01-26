@@ -95,6 +95,15 @@
     <url-pattern>/upload_servlet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>Ustawianie automatu</servlet-name>
+    <servlet-class>controllers.aukcje.UstawAutomat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ustawianie automatu</servlet-name>
+    <url-pattern>/ustaw_automat</url-pattern>
+  </servlet-mapping>
+  
   
   <listener>
     <listener-class>

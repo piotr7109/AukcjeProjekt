@@ -29,7 +29,7 @@ public class PrzebicieFactory extends AbstractFactory
 
 	public Przebicie getOstatniePrzebicie(int id_aukcji)
 	{
-		query = String.format("SELECT * from t_przebicia where id_aukcji = %s order by data_przebicia DESC limit 1", id_aukcji);
+		query = String.format("SELECT * from t_przebicia where id_aukcji = %s order by id DESC limit 1", id_aukcji);
 		Przebicie prz = (Przebicie) getObject();
 		return prz;
 	}

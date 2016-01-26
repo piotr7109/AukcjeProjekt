@@ -25,7 +25,7 @@ public class PostgreSQLJDBC
 		{
 			Class.forName("org.postgresql.Driver");
 			c = DriverManager.getConnection("jdbc:postgresql://"+host+"/"+database, user, password);
-			System.out.println("Opened database successfully");
+			//System.out.println("Opened database successfully");
 			
 			
 		} 
@@ -34,7 +34,7 @@ public class PostgreSQLJDBC
 			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
 			System.exit(0);
 	    }
-	    System.out.println("Operation done successfully");
+	    //System.out.println("Operation done successfully");
 		
 		
 	}

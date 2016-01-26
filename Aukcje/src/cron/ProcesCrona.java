@@ -18,7 +18,7 @@ public class ProcesCrona implements ServletContextListener
 				{
 					while (true)
 					{
-						//System.out.println("Thread running every second");
+						SprawdzAutomaty.sprawdz();
 						Thread.sleep(1000);
 					}
 				}

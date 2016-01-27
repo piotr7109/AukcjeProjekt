@@ -2,6 +2,7 @@ package modules.uzytkownicy;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modules.AbstractLista;
 
@@ -30,5 +31,11 @@ public class UzytkownicyLista extends AbstractLista
 		
 		
 		return u;
+	}
+	public ArrayList<Object> getUzytkownicyAukcja(int id_aukcji)
+	{
+		query = String.format("select DISTINCT u.* FROM t_uzytkownicy u INNER JOIN t_przebicia p ON u.id = p.id_uzytkownika  WHERE p.id_aukcji =%d", id_aukcji);
+		ArrayList<Object> uz = (ArrayList<Object>) getList();
+		return uz;
 	}
 }

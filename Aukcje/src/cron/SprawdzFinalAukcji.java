@@ -10,6 +10,10 @@ import modules.automaty.Automat;
 import modules.automaty.AutomatLista;
 import modules.przebicia.Przebicie;
 import modules.przebicia.PrzebicieFactory;
+import modules.przebicia.PrzebicieLista;
+import modules.uzytkownicy.UzytkownicyLista;
+import modules.uzytkownicy.Uzytkownik;
+import modules.uzytkownicy.UzytkownikFactory;
 
 public class SprawdzFinalAukcji
 {
@@ -40,6 +44,21 @@ public class SprawdzFinalAukcji
 				{
 					aukcja.setStan('X');
 					aukcja.updateAukcja();
+					UzytkownicyLista u_lista = new UzytkownicyLista();
+					ArrayList<Object> uzytkownicy = u_lista.getUzytkownicyAukcja(aukcja.getId());					
+					int size = uzytkownicy.size();
+					
+					for(int j=0; j< size; j++)
+					{
+						Uzytkownik uz = (Uzytkownik)uzytkownicy.get(j);
+						Przebicie ost_przebicie = przebicie_factory.getOstatniePrzebicieUzytkownika(aukcja.getId(), uz.getId());
+						
+						int wartosc = (int)ost_przebicie.getWartosc();
+						uz.setStanKonta(uz.getStanKonta()-wartosc);
+						uz.setBicki();
+					
+					}
+					aukcja.deletePrzebicia();
 				}
 			}
 			else if (aukcja.getDataZakonczenia().before(getLastWeekDate()))

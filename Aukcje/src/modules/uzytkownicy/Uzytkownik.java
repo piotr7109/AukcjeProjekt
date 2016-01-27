@@ -134,6 +134,12 @@ public class Uzytkownik
 		String query = String.format("UPDATE t_uzytkownicy set status = '%c' where id=%d", status, id);
 		pgsq.queryOpertaion(query);
 	}
+	public void setBicki()
+	{
+		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
+		String query = String.format("UPDATE t_uzytkownicy set stan_konta = %d where id=%d", stan_konta, id);
+		pgsq.queryOpertaion(query);
+	}
 	
 	
 	

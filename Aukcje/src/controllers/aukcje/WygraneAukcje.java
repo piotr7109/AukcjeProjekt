@@ -66,7 +66,7 @@ public class WygraneAukcje extends ServletMain
 			html += "<tr>";
 
 			html += String.format("<td>%d</td>", (i + 1));
-			html += String.format("<td>%s</td>", "<img src = " + au.getPrzedmiot().getZdjecieSrc() + " width=\"300\" height=\"150\" border=\"3\" </img>");
+			html += String.format("<td>%s</td>", String.format("<img src ='%s' class='lista_aukcji_img'  border='3' >", au.getPrzedmiot().getZdjecieSrc()));
 			html += String.format("<td>%s</td>", au.getNazwa());
 			html += String.format("<td>%s</td>", au.getDataZakonczenia());
 			html += String.format("<td>%s</td>", ostatnie_przebicie.getWartosc());

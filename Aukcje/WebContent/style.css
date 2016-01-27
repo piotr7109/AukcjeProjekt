@@ -67,3 +67,7 @@ td,th
     color: white;
 }
 
+.lista_aukcji_img
+{
+	max-height: 150px;
+}

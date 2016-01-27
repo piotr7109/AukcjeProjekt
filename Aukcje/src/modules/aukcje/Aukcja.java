@@ -119,11 +119,11 @@ public class Aukcja
 		String query = String.format("DELETE FROM t_aukcje WHERE id=%d", id);
 		pgsq.queryOpertaion(query);
 
-		query = String.format("DELETE FROM t_przebicia WHERE id_aukcji=%d", id);
-		pgsq.queryOpertaion(query);
+		//query = String.format("DELETE FROM t_przebicia WHERE id_aukcji=%d", id);
+		//pgsq.queryOpertaion(query);
 
-		query = String.format("DELETE FROM t_automaty WHERE id_aukcji=%d", id);
-		pgsq.queryOpertaion(query);
+		//query = String.format("DELETE FROM t_automaty WHERE id_aukcji=%d", id);
+		//pgsq.queryOpertaion(query);
 	}
 
 }

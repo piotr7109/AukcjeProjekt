@@ -21,4 +21,10 @@ public class Komunikaty
 		
 		return html;
 	}
+	public static String getInfo(String komunikat)
+	{
+		String html ="<div class='alert alert-info' role='alert'><span aria-hidden='true' class='glyphicon glyphicon-alert'></span> "+komunikat+"</div>";
+		
+		return html;
+	}
 }

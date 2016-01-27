@@ -54,7 +54,10 @@ public class PodgladAukcji extends ServletMain
 		AukcjaFactory a_factory = new AukcjaFactory();
 		a_factory.setId(id_aukcji);
 		aukcja = (Aukcja) a_factory.getObject();
-
+		
+		
+		
+		
 		if (testy() == "AUKCJA_NIE_ISTNIEJE")
 		{
 			html = Komunikaty.getError("Aukcja o podanym identyfikatorze nie istnieje!");
@@ -82,13 +85,7 @@ public class PodgladAukcji extends ServletMain
 				Przebicie przebicie = getPrzebicieFromRequest(request);
 				String przebicieTest = this.testyPrzebicie(przebicie);
 				
-				String button = request.getParameter("delete");
-				if(button != null)
-				{
-					
-					html = usunAukcje(aukcja);
-					
-				}
+				
 				
 				if (przebicieTest == "NIEZALOGOWANY")
 				{
@@ -117,6 +114,14 @@ public class PodgladAukcji extends ServletMain
 
 			}
 			html += getRightHtml();
+			if( (request.getParameter("tryb")!= null) && request.getParameter("tryb").equals("usun"))
+			{
+				
+				
+				
+				html = usunAukcjeHtml(aukcja);
+				html += "<script>window.location.replace('lista_aukcji');</script>";
+			}
 		}
 
 		initServlet();
@@ -188,16 +193,23 @@ public class PodgladAukcji extends ServletMain
 		String html = "";
 		Przedmiot przedmiot = aukcja.getPrzedmiot();
 		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(), przedmiot.getNazwa(), przedmiot.getZdjecieSrc(), aktualna_cena + " pkt BICK", data_ostatniego_przebicia,
-				aukcja.getDataZakonczenia(), aukcja.getId(), przedmiot.getOpis());
+				aukcja.getDataZakonczenia(), aukcja.getId(), przedmiot.getOpis(), "", aukcja.getId());
 		return html;
 	}
-	private String usunAukcje(Aukcja a)
+	private String usunAukcjeHtml(Aukcja a)
 	{
-		System.out.println("USUWANIE AUKCJI");
+		String html ="";
+		
+		PrzedmiotFactory p_factory = new PrzedmiotFactory();
+		p_factory.setId(a.getIdPrzedmiotu());
+		a.setPrzedmiot((Przedmiot) p_factory.getObject());
 		a.getPrzedmiot().deletePrzedmiot();
 		a.deleteAukcja();
-		String abc = Komunikaty.getSukces("Aukcja zosta³a usuniêta");
-		return abc;
+		String komunikat = Komunikaty.getInfo("Aukcja zosta³a usuniêta");
+		
+		html +=komunikat;
+		
+		return html;
 	}
 
 }

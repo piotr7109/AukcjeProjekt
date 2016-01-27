@@ -17,7 +17,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 
-//import org.apache.commons.io.FileUtils;
+//import org.apache.commons.io.FileUtils; 
 
 import main.Komunikaty;
 import main.ServletMain;
@@ -75,7 +75,6 @@ public class DodajAukcje extends ServletMain
 		}
 		else
 		{
-			System.out.println("mode 2");
 			this.zapiszAukcje(aukcja);
 			html = "<script>window.location.replace('upload_servlet');</script>";
 		}
@@ -116,7 +115,6 @@ public class DodajAukcje extends ServletMain
 	{
 		Aukcja aukcja = new Aukcja();
 
-		System.out.println("AAA" + request.getParameter("nazwa_aukcji"));
 		if (request.getParameter("nazwa_aukcji").equals(""))
 		{
 			html = Komunikaty.getError("Wpisz nazwê");
@@ -132,7 +130,16 @@ public class DodajAukcje extends ServletMain
 
 		Date data_zakonczenia = Date.valueOf(request.getParameter("data_zakonczenia"));
 		aukcja.setDataZakonczenia(data_zakonczenia);
-
+		
+		java.util.Date date = new java.util.Date();
+		Date sqlDate = new Date(date.getTime());
+		if(data_zakonczenia.before(sqlDate))
+		{
+			html = Komunikaty.getError("Wpisz poprawn¹ datê  zakoñæzenia");
+			return null;
+		}
+		
+		
 		Przedmiot prz = new Przedmiot();
 		if (request.getParameter("nazwa_przedmiotu").equals(""))
 		{
@@ -145,9 +152,7 @@ public class DodajAukcje extends ServletMain
 	
 		prz.setZdjecieSrc("");
 		aukcja.setPrzedmiot(prz);
-		System.out.println(
-				aukcja.getId() + " " + aukcja.getIdUzytkownika() + " " + aukcja.getNazwa() + " " + aukcja.getIdPrzedmiotu() + " " + aukcja.getDataRozpoczecia() + " " + aukcja.getDataZakonczenia());
-		System.out.println(aukcja.getPrzedmiot().getId() + " " + aukcja.getPrzedmiot().getLastId() + " " + aukcja.getPrzedmiot().getNazwa() + " " + aukcja.getPrzedmiot().getOpis());
+		
 		return aukcja;
 	}
 

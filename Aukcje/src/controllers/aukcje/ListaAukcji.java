@@ -31,10 +31,18 @@ public class ListaAukcji extends ServletMain
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		AukcjaLista a_lista = new AukcjaLista();
-		aukcje = a_lista.getAktywneAukcje();
+		if (mode == 1)
+		{
+			aukcje = a_lista.getAktywneAukcje();
+		}
+		else
+		{
+			
+			aukcje = a_lista.getAktywneAukcje();
+			
+		}
 		ile_aukcji = aukcje.size();
 		html = String.format(this.getHtml(page_url), this.getRightHtml());
-
 		initServlet();
 	}
 
@@ -43,7 +51,7 @@ public class ListaAukcji extends ServletMain
 		String html = "";
 		Aukcja au;
 
-		for (int i = this.ile_aukcji-1; i > -1; i--)
+		for (int i = this.ile_aukcji - 1; i > -1; i--)
 		{
 			au = (Aukcja) aukcje.get(i);
 			PrzedmiotFactory p_factory = new PrzedmiotFactory();
@@ -52,7 +60,7 @@ public class ListaAukcji extends ServletMain
 
 			html += "<tr>";
 
-			html += String.format("<td>%d</td>", (ile_aukcji-i));
+			html += String.format("<td>%d</td>", (ile_aukcji - i));
 			html += String.format("<td>%s</td>", String.format("<img src ='%s' class='lista_aukcji_img'  border='3' >", au.getPrzedmiot().getZdjecieSrc()));
 			html += String.format("<td>%s</td>", au.getNazwa());
 			html += String.format("<td>%s</td>", au.getDataZakonczenia());

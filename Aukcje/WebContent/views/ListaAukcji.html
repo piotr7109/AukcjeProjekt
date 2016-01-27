@@ -2,6 +2,20 @@
 	<div class="panel-heading">
 		<span class="glyphicon glyphicon-th-list"></span> Bie¿¹ce aukcje
 	</div>
+	<div style='padding: 10px' class='pull-right col-lg-4 col-md-4'>
+		<form method="POST">
+			<input type="hidden" value="0" name="mode" id="mode"></input>
+			<div id="nazwa" class="col-lg-6 col-md-6">
+				<input type="text" class="form-control"
+					placeholder="Wartoœæ szukana" name="nazwa" required="">
+			</div>
+			<div id="przebij" class="col-lg-6 col-md-6">
+				<button type="submit" class="btn btn-success">
+					<span class="glyphicon glyphicon-search"></span> Szukaj
+				</button>
+			</div>
+		</form>
+	</div>
 	<table class="table">
 		<tr>
 			<th>#</th>

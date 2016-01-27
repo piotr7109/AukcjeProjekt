@@ -205,8 +205,13 @@ public class PodgladAukcji extends ServletMain
 	{
 		String html = "";
 		Przedmiot przedmiot = aukcja.getPrzedmiot();
+		String display = "";
+		if(aukcja.getIdUzytkownika() != sesja.getIdUzytkownika(request))
+		{
+			display = "display:none";
+		}
 		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(), przedmiot.getNazwa(), przedmiot.getZdjecieSrc(), aktualna_cena + " pkt BICK", data_ostatniego_przebicia,
-				aukcja.getDataZakonczenia(), aukcja.getId(), przedmiot.getOpis(), "", aukcja.getId());
+				aukcja.getDataZakonczenia(), aukcja.getId(), przedmiot.getOpis(), display, aukcja.getId());
 		return html;
 	}
 

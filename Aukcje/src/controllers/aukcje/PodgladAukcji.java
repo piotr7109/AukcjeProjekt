@@ -62,6 +62,10 @@ public class PodgladAukcji extends ServletMain
 		{
 			html = Komunikaty.getError("Aukcja o podanym identyfikatorze nie istnieje!");
 		}
+		else if (testy() == "AUKCJA_ZAKONCZONA")
+		{
+			html = Komunikaty.getError("Aukcja zosta³a zakoñczona!");
+		}
 		else
 		{
 			PrzedmiotFactory p_factory = new PrzedmiotFactory();
@@ -184,6 +188,10 @@ public class PodgladAukcji extends ServletMain
 		if (aukcja == null)
 		{
 			return "AUKCJA_NIE_ISTNIEJE";
+		}
+		if((aukcja.getStan() == 'X'))
+		{
+			return "AUKCJA_ZAKONCZONA";
 		}
 		return "";
 	}

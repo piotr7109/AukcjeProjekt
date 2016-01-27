@@ -26,6 +26,8 @@ public class AukcjaFactory extends AbstractFactory
 		aukcja.setDataRozpoczecia(rs.getDate("data_rozpoczecia"));
 		aukcja.setDataZakonczenia(rs.getDate("data_zakonczenia"));
 		aukcja.setStan(rs.getString("stan").charAt(0));
+		aukcja.setIdUzytkownikaZakup(rs.getInt("id_uzytkownika_zakup"));
+		aukcja.setCenaKoncowa(rs.getInt("cena_koncowa"));
 		
 		return aukcja;
 	}

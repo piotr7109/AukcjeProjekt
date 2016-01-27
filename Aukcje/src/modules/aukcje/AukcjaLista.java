@@ -25,6 +25,8 @@ public class AukcjaLista extends AbstractLista
 		aukcja.setDataRozpoczecia(rs.getDate("data_rozpoczecia"));
 		aukcja.setDataZakonczenia(rs.getDate("data_zakonczenia"));
 		aukcja.setStan(rs.getString("stan").charAt(0));
+		aukcja.setIdUzytkownikaZakup(rs.getInt("id_uzytkownika_zakup"));
+		aukcja.setCenaKoncowa(rs.getInt("cena_koncowa"));
 
 		return aukcja;
 	}
@@ -42,9 +44,9 @@ public class AukcjaLista extends AbstractLista
 		ArrayList<Object> au = (ArrayList<Object>) getList();
 		return au;
 	}
-	public ArrayList<Object> getAukcjeWygrane()
+	public ArrayList<Object> getAukcjeWygrane(int id_uzytkownika)
 	{
-		query = String.format("select * FROM t_aukcje where stan ='X'");
+		query = String.format("select * FROM t_aukcje where stan ='X' AND id_uzytkownika_zakup=%d", id_uzytkownika);
 		ArrayList<Object> au = (ArrayList<Object>) getList();
 		return au;
 	}

@@ -42,7 +42,11 @@ public class SprawdzFinalAukcji
 				}
 				else
 				{
+					Przebicie ostatnie_przebicie_ = (Przebicie)przebicie_factory.getOstatniePrzebicie(aukcja.getId());
+					
 					aukcja.setStan('X');
+					aukcja.setIdUzytkownikaZakup(ostatnie_przebicie_.getIdUzytkownika());
+					aukcja.setCenaKoncowa((int)ostatnie_przebicie_.getWartosc());
 					aukcja.updateAukcja();
 					UzytkownicyLista u_lista = new UzytkownicyLista();
 					ArrayList<Object> uzytkownicy = u_lista.getUzytkownicyAukcja(aukcja.getId());					

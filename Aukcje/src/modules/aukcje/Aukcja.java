@@ -15,6 +15,7 @@ public class Aukcja
 	private Date data_rozpoczecia;
 	private Date data_zakonczenia;
 	private char stan;
+	private int id_uzytkownika_zakup, cena_koncowa;
 
 	public int getId()
 	{
@@ -96,6 +97,26 @@ public class Aukcja
 		this.stan = stan;
 	}
 
+	public int getIdUzytkownikaZakup()
+	{
+		return id_uzytkownika_zakup;
+	}
+
+	public void setIdUzytkownikaZakup(int id_uzytkownika_zakup)
+	{
+		this.id_uzytkownika_zakup = id_uzytkownika_zakup;
+	}
+
+	public int getCenaKoncowa()
+	{
+		return cena_koncowa;
+	}
+
+	public void setCenaKoncowa(int cena_koncowa)
+	{
+		this.cena_koncowa = cena_koncowa;
+	}
+
 	public void insertAukcja()
 	{
 		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
@@ -107,9 +128,8 @@ public class Aukcja
 	public void updateAukcja()
 	{
 		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
-		String query = String.format("UPDATE t_aukcje SET id_uzytkownika = %d, id_przedmiotu = %d," + "nazwa = '%s', data_rozpoczecia = '%s', data_zakonczenia = '%s', stan='%c' WHERE id=%d",
-				id_uzytkownika, id_przedmiotu, nazwa, data_rozpoczecia, data_zakonczenia, stan, id);
-		System.out.println(query);
+		String query = String.format("UPDATE t_aukcje SET id_uzytkownika = %d, id_przedmiotu = %d," + "nazwa = '%s', data_rozpoczecia = '%s', data_zakonczenia = '%s', stan='%c', id_uzytkownika_zakup=%d, cena_koncowa = %d WHERE id=%d",
+				id_uzytkownika, id_przedmiotu, nazwa, data_rozpoczecia, data_zakonczenia, stan, id_uzytkownika_zakup, cena_koncowa, id);
 		pgsq.queryOpertaion(query);
 	}
 
@@ -120,6 +140,7 @@ public class Aukcja
 		pgsq.queryOpertaion(query);
 
 	}
+
 	public void deletePrzebicia()
 	{
 		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
@@ -127,7 +148,7 @@ public class Aukcja
 		pgsq.queryOpertaion(query);
 		deleteAutomaty();
 	}
-	
+
 	private void deleteAutomaty()
 	{
 		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();

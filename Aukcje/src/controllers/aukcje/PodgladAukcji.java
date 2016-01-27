@@ -100,6 +100,14 @@ public class PodgladAukcji extends ServletMain
 					html = Komunikaty.getWarning("Niestety nie masz wystarczaj¹co du¿o œrodów na koncie. " + "Mo¿e to wynikaæ z udzia³u w innych aukcjach.<br>"
 							+ "<a href='zakup_bickow'>Uzupe³nij swoje konto, aby braæ udzia³ w aukcji.</a>");
 				}
+				else if (przebicieTest == "BRAK_FUNDUSZY_PRZESY£KA")
+				{
+					html = Komunikaty.getWarning("Niestety nie masz wystarczaj¹co du¿o œrodów na koncie. " + "Mo¿e to wynikaæ z udzia³u w innych aukcjach (pamiêtaj o kosztach wysy³ki).<br>"
+							+ "<a href='zakup_bickow'>Uzupe³nij swoje konto, aby braæ udzia³ w aukcji.</a>");
+				}
+				
+				
+				
 				else
 				{
 					przebicie.insertPrzebicie();
@@ -171,9 +179,14 @@ public class PodgladAukcji extends ServletMain
 			u_factory.setId(sesja.getIdUzytkownika(request));
 			Uzytkownik uz = (Uzytkownik) u_factory.getObject();
 			System.out.println(wartosc);
-			if (wartosc > uz.getStanKonta())
+			if(wartosc + 10 > uz.getStanKonta())
 			{
-				return "BRAK_FUNDUSZY";
+				if (wartosc > uz.getStanKonta())
+				{
+					return "BRAK_FUNDUSZY";
+				}
+				else
+					return "BRAK_FUNDUSZY_PRZESY£KA";
 			}
 		}
 		return "";

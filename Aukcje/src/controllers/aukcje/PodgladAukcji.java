@@ -54,10 +54,7 @@ public class PodgladAukcji extends ServletMain
 		AukcjaFactory a_factory = new AukcjaFactory();
 		a_factory.setId(id_aukcji);
 		aukcja = (Aukcja) a_factory.getObject();
-		
-		
-		
-		
+
 		if (testy() == "AUKCJA_NIE_ISTNIEJE")
 		{
 			html = Komunikaty.getError("Aukcja o podanym identyfikatorze nie istnieje!");
@@ -88,9 +85,7 @@ public class PodgladAukcji extends ServletMain
 			{
 				Przebicie przebicie = getPrzebicieFromRequest(request);
 				String przebicieTest = this.testyPrzebicie(przebicie);
-				
-				
-				
+
 				if (przebicieTest == "NIEZALOGOWANY")
 				{
 					html = Komunikaty.getWarning("Zaloguj siê, aby licytowaæ ");
@@ -118,11 +113,9 @@ public class PodgladAukcji extends ServletMain
 
 			}
 			html += getRightHtml();
-			if( (request.getParameter("tryb")!= null) && request.getParameter("tryb").equals("usun"))
+			if ((request.getParameter("tryb") != null) && request.getParameter("tryb").equals("usun"))
 			{
-				
-				
-				
+
 				html = usunAukcjeHtml(aukcja);
 				html += "<script>window.location.replace('lista_aukcji');</script>";
 			}
@@ -167,13 +160,17 @@ public class PodgladAukcji extends ServletMain
 			for (int i = 0; i < size; i++)
 			{
 				Aukcja au = (Aukcja) aukcje.get(i);
-				Przebicie p = p_factory.getOstatniePrzebicieUzytkownika(au.getId(), sesja.getIdUzytkownika(request));
-				wartosc += p.getWartosc();
+				if (au.getId() != aukcja.getId())
+				{
+					Przebicie p = p_factory.getOstatniePrzebicieUzytkownika(au.getId(), sesja.getIdUzytkownika(request));
+					wartosc += p.getWartosc();
+				}
 			}
 			wartosc += prz.getWartosc();
 			UzytkownikFactory u_factory = new UzytkownikFactory();
 			u_factory.setId(sesja.getIdUzytkownika(request));
 			Uzytkownik uz = (Uzytkownik) u_factory.getObject();
+			System.out.println(wartosc);
 			if (wartosc > uz.getStanKonta())
 			{
 				return "BRAK_FUNDUSZY";
@@ -189,7 +186,7 @@ public class PodgladAukcji extends ServletMain
 		{
 			return "AUKCJA_NIE_ISTNIEJE";
 		}
-		if((aukcja.getStan() == 'X'))
+		if ((aukcja.getStan() == 'X'))
 		{
 			return "AUKCJA_ZAKONCZONA";
 		}
@@ -204,19 +201,20 @@ public class PodgladAukcji extends ServletMain
 				aukcja.getDataZakonczenia(), aukcja.getId(), przedmiot.getOpis(), "", aukcja.getId());
 		return html;
 	}
+
 	private String usunAukcjeHtml(Aukcja a)
 	{
-		String html ="";
-		
+		String html = "";
+
 		PrzedmiotFactory p_factory = new PrzedmiotFactory();
 		p_factory.setId(a.getIdPrzedmiotu());
 		a.setPrzedmiot((Przedmiot) p_factory.getObject());
 		a.getPrzedmiot().deletePrzedmiot();
 		a.deleteAukcja();
 		String komunikat = Komunikaty.getInfo("Aukcja zosta³a usuniêta");
-		
-		html +=komunikat;
-		
+
+		html += komunikat;
+
 		return html;
 	}
 

@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -21,6 +22,7 @@ import org.apache.commons.io.FileUtils;
 import main.Komunikaty;
 import main.ServletMain;
 import modules.aukcje.Aukcja;
+import modules.aukcje.AukcjaFactory;
 import modules.przedmioty.Przedmiot;
 
 @MultipartConfig
@@ -77,11 +79,20 @@ public class DodajAukcje extends ServletMain
 			this.zapiszAukcje(aukcja);
 			html = this.getRightHtml();
 		}
+		
+		
+		AukcjaFactory a_factory = new AukcjaFactory();
+		Aukcja ost_aukcja = a_factory.getLastInserted();
+		zapiszIdAukcjiDoSesji(ost_aukcja.getId());
 		html = "<script>window.location.replace('upload_servlet');</script>";
     	initServlet();
     }
 	
-
+	private void zapiszIdAukcjiDoSesji(int id_aukcji)
+	{
+		HttpSession session=request.getSession();
+		session.setAttribute("id_aukcji", id_aukcji);
+	}
 
 	private void zapiszAukcje(Aukcja aukcja)
 	{

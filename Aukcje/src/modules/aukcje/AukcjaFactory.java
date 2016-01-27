@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import modules.AbstractFactory;
+import modules.przedmioty.Przedmiot;
 
 public class AukcjaFactory extends AbstractFactory
 {
@@ -27,6 +28,12 @@ public class AukcjaFactory extends AbstractFactory
 		aukcja.setStan(rs.getString("stan").charAt(0));
 		
 		return aukcja;
+	}
+	public Aukcja getLastInserted()
+	{
+		query = String.format("SELECT * from t_aukcje order by id DESC limit 1");
+		Aukcja au = (Aukcja) getObject();
+		return au;
 	}
 
 	

@@ -11,6 +11,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -38,6 +39,8 @@ public class UploadServlet extends ServletMain
 	private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
 	private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
 
+	private int id_aukcji;
+
 	public UploadServlet()
 	{
 		// TODO Auto-generated constructor stub
@@ -53,37 +56,32 @@ public class UploadServlet extends ServletMain
 	{
 		return true;
 	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		HttpSession session = request.getSession();
+		id_aukcji = (int) session.getAttribute("id_aukcji");
 
 		request.setCharacterEncoding("UTF-8");
 		this.request = request;
 		this.response = response;
-		System.out.println("aaaaa");
 		html = String.format(this.getHtml(page_url));
-		System.out.println("bbbbb");
 		initServlet();
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		HttpSession session = request.getSession();
+		id_aukcji = (int) session.getAttribute("id_aukcji");
+		
 		request.setCharacterEncoding("UTF-8");
 		this.request = request;
 		this.response = response;
 		PrzedmiotFactory p_factory = new PrzedmiotFactory();
 		Przedmiot przedmiot = p_factory.getLastInserted();
 
-		if (!ServletFileUpload.isMultipartContent(request))
-			// {
-			// PrintWriter writer = response.getWriter();
-			// writer.println("Request does not contain upload data");
-			// writer.flush();
-			// return;
-			// }
 
-			// configures upload settings
-			System.out.println("case 1");
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(THRESHOLD_SIZE);
 		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
@@ -146,7 +144,7 @@ public class UploadServlet extends ServletMain
 
 		zapiszPrzedmiot(przedmiot);
 		html = Komunikaty.getSukces("Aukcja zosta³a pomyœlnie dodana <br><a href='podglad_aukcji?id_aukcji='");
-		
+
 		// getServletContext().getRequestDispatcher("/message.jsp").forward(request,
 		// response);
 		initServlet();

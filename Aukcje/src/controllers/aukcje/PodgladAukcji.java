@@ -38,7 +38,7 @@ public class PodgladAukcji extends ServletMain
 	private int wartosc_przebicia;
 	private String data_ostatniego_przebicia;
 	private double aktualna_cena;
- 
+
 	public PodgladAukcji()
 	{
 		super();

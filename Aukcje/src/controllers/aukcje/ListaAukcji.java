@@ -43,7 +43,7 @@ public class ListaAukcji extends ServletMain
 		String html = "";
 		Aukcja au;
 
-		for (int i = 0; i < this.ile_aukcji; i++)
+		for (int i = this.ile_aukcji-1; i > -1; i--)
 		{
 			au = (Aukcja) aukcje.get(i);
 			PrzedmiotFactory p_factory = new PrzedmiotFactory();
@@ -52,7 +52,7 @@ public class ListaAukcji extends ServletMain
 
 			html += "<tr>";
 
-			html += String.format("<td>%d</td>", (i + 1));
+			html += String.format("<td>%d</td>", (ile_aukcji-i));
 			html += String.format("<td>%s</td>", "<img src = " + au.getPrzedmiot().getZdjecieSrc() + " width=\"300\" height=\"150\" border=\"3\" </img>");
 			html += String.format("<td>%s</td>", au.getNazwa());
 			html += String.format("<td>%s</td>", au.getDataZakonczenia());

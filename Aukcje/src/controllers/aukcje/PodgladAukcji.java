@@ -81,7 +81,15 @@ public class PodgladAukcji extends ServletMain
 			{
 				Przebicie przebicie = getPrzebicieFromRequest(request);
 				String przebicieTest = this.testyPrzebicie(przebicie);
-
+				
+				String button = request.getParameter("delete");
+				if(button != null)
+				{
+					
+					html = usunAukcje(aukcja);
+					
+				}
+				
 				if (przebicieTest == "NIEZALOGOWANY")
 				{
 					html = Komunikaty.getWarning("Zaloguj siê, aby licytowaæ ");
@@ -182,6 +190,14 @@ public class PodgladAukcji extends ServletMain
 		html = String.format(this.getHtml(page_url), this.aukcja.getNazwa(), przedmiot.getNazwa(), przedmiot.getZdjecieSrc(), aktualna_cena + " pkt BICK", data_ostatniego_przebicia,
 				aukcja.getDataZakonczenia(), aukcja.getId(), przedmiot.getOpis());
 		return html;
+	}
+	private String usunAukcje(Aukcja a)
+	{
+		System.out.println("USUWANIE AUKCJI");
+		a.getPrzedmiot().deletePrzedmiot();
+		a.deleteAukcja();
+		String abc = Komunikaty.getSukces("Aukcja zosta³a usuniêta");
+		return abc;
 	}
 
 }

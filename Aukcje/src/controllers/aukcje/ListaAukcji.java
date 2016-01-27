@@ -33,7 +33,7 @@ public class ListaAukcji extends ServletMain
 		AukcjaLista a_lista = new AukcjaLista();
 		if (mode == 1)
 		{
-			aukcje = a_lista.getAktywneAukcje();
+			aukcje = a_lista.wyszukajAukcje(request.getParameter("nazwa"));
 		}
 		else
 		{

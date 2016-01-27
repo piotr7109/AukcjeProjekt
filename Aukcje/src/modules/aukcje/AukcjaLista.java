@@ -52,7 +52,7 @@ public class AukcjaLista extends AbstractLista
 	}
 	public ArrayList<Object> wyszukajAukcje(String nazwa_aukcji)
 	{
-		query = "SELECT * FROM t_aukcje WHERE nazwa LIKE '%"+ nazwa_aukcji + "%' AND stan = 'A'";
+		query = "SELECT * FROM t_aukcje WHERE UPPER(nazwa) LIKE UPPER('%"+ nazwa_aukcji + "%') AND stan = 'A'";
 		System.out.println(query);
 		ArrayList<Object> au = (ArrayList<Object>) getList();
 		return au;

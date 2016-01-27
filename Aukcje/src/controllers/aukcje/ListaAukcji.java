@@ -31,6 +31,7 @@ public class ListaAukcji extends ServletMain
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		AukcjaLista a_lista = new AukcjaLista();
+		System.out.println("MODE " + mode);
 		if (mode == 1)
 		{
 			aukcje = a_lista.wyszukajAukcje(request.getParameter("nazwa"));
@@ -41,6 +42,7 @@ public class ListaAukcji extends ServletMain
 			aukcje = a_lista.getAktywneAukcje();
 			
 		}
+		mode = 0;
 		ile_aukcji = aukcje.size();
 		html = String.format(this.getHtml(page_url), this.getRightHtml());
 		initServlet();

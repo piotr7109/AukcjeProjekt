@@ -120,11 +120,17 @@ public class UploadServlet extends ServletMain
 					String destFileName = setNazwa(fileName);
 					String filePath = uploadPath + File.separator + destFileName;
 					File storeFile = new File(filePath);
-					przedmiot.setZdjecieSrc("upload/" + destFileName);
+					if(destFileName!=null)
+					{
+						przedmiot.setZdjecieSrc("upload/" + destFileName);
+						item.write(storeFile);
+					}
+					else
+					przedmiot.setZdjecieSrc("upload/Yoda.png");
 					System.out.println(przedmiot.getZdjecieSrc());
 					System.out.println("ID przedmiotu to: " + przedmiot.getId());
 					// saves the file on disk
-					item.write(storeFile);
+					
 				}
 				else
 				{
@@ -158,12 +164,19 @@ public class UploadServlet extends ServletMain
 
 	private String setNazwa(String input)
 	{
-		String nazwa = "upload/";
 		String ext = FilenameUtils.getExtension(input);
-		double a = Math.random() * 100000;
-		String output = String.format("%05d", (int) a);
-		output += "." + ext;
-		return output;
+		System.out.println("EXTENSION : " + ext);
+		if (sprawdzRozszerzenie(ext))
+		{
+			double a = Math.random() * 100000;
+			String output = String.format("%05d", (int) a);
+			output += "." + ext;
+			return output;
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 	private boolean sprawdzRozszerzenie(String extension)

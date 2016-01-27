@@ -60,6 +60,11 @@ public class SprawdzFinalAukcji
 						int wartosc = (int)ost_przebicie.getWartosc();
 						uz.setStanKonta(uz.getStanKonta()-wartosc);
 						uz.setBicki();
+						if(uz.getId() == aukcja.getIdUzytkownika())
+						{
+							uz.setStanKonta(uz.getStanKonta()+wartosc);
+							uz.setBicki();
+						}
 					
 					}
 					aukcja.deletePrzebicia();

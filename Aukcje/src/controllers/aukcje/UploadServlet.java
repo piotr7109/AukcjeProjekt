@@ -103,11 +103,11 @@ public class UploadServlet extends ServletMain
 		try
 		{
 			// parses the request's content to extract file data
-			System.out.println("0");
+
 			List formItems = upload.parseRequest(request);
-			System.out.println("1");
+		
 			Iterator iter = formItems.iterator();
-			System.out.println("2");
+			
 			// iterates over form's fields
 			// System.out.println(formItems);
 			while (iter.hasNext())
@@ -127,16 +127,11 @@ public class UploadServlet extends ServletMain
 					}
 					else
 					przedmiot.setZdjecieSrc("upload/Yoda.png");
-					System.out.println(przedmiot.getZdjecieSrc());
-					System.out.println("ID przedmiotu to: " + przedmiot.getId());
+	
 					// saves the file on disk
 					
 				}
-				else
-				{
 
-					System.out.println("nie plik!!!");
-				}
 			}
 			// request.setAttribute("message", "Upload has been done
 			// successfully!");
@@ -165,7 +160,7 @@ public class UploadServlet extends ServletMain
 	private String setNazwa(String input)
 	{
 		String ext = FilenameUtils.getExtension(input);
-		System.out.println("EXTENSION : " + ext);
+		
 		if (sprawdzRozszerzenie(ext))
 		{
 			double a = Math.random() * 100000;

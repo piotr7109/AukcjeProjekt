@@ -37,10 +37,10 @@ public class SprawdzAutomaty
 				Automat automat = (Automat) automaty.get(j);
 				if (automat.getIdUzytkownika() != ostatnie_przebicie.getIdUzytkownika())
 				{
-					if(automat.getMaxPrzebicie() >= ostatnie_przebicie.getWartosc())
+					if (automat.getMaxPrzebicie() >= ostatnie_przebicie.getWartosc())
 					{
 						Przebicie przebicie = new Przebicie();
-						przebicie.setWartosc(ostatnie_przebicie.getWartosc()+1);
+						przebicie.setWartosc(ostatnie_przebicie.getWartosc() + 1);
 						przebicie.setIdAukcji(aukcja.getId());
 						przebicie.setIdUzytkownika(automat.getIdUzytkownika());
 

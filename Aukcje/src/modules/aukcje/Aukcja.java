@@ -115,7 +115,7 @@ public class Aukcja
 
 	public void deleteAukcja()
 	{
-		PostgreSQLJDBC pgsq = new PostgreSQLJDBC();
+		PostgreSQLJDBC pgsq = new PostgreSQLJDBC(); 
 		String query = String.format("DELETE FROM t_aukcje WHERE id=%d", id);
 		pgsq.queryOpertaion(query);
 

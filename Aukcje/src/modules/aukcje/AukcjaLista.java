@@ -50,4 +50,11 @@ public class AukcjaLista extends AbstractLista
 		ArrayList<Object> au = (ArrayList<Object>) getList();
 		return au;
 	}
+	public ArrayList<Object> wyszukajAukcje(String nazwa_aukcji)
+	{
+		query = "SELECT * FROM t_aukcje WHERE nazwa LIKE '%"+ nazwa_aukcji + "%' AND stan = 'A'";
+		System.out.println(query);
+		ArrayList<Object> au = (ArrayList<Object>) getList();
+		return au;
+	}
 }

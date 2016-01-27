@@ -64,7 +64,7 @@ public class DodajAukcje extends ServletMain
     	request.setCharacterEncoding("UTF-8");
     	this.request = request;
     	this.response = response;
-    	//zapiszPlik();
+    	
     	Aukcja aukcja = getAukcjaFromRequest(request);
 		if (aukcja == null)
 		{
@@ -77,36 +77,11 @@ public class DodajAukcje extends ServletMain
 			this.zapiszAukcje(aukcja);
 			html = this.getRightHtml();
 		}
+		html = "<script>window.location.replace('upload_servlet');</script>";
     	initServlet();
     }
 	
-	/*public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
 
-		switch (mode)
-		{
-			case 1:
-				System.out.println("mode 1");
-				Aukcja aukcja = getAukcjaFromRequest(request);
-				if (aukcja == null)
-				{
-					mode = 0;
-					html += this.getRightHtml();
-				}
-				else
-				{
-					System.out.println("mode 2");
-					this.zapiszAukcje(aukcja);
-					html = this.getRightHtml();
-				}
-				break;
-			case 2:
-				html = this.getRightHtml();
-				break;
-
-		}
-		initServlet();
-	}*/
 
 	private void zapiszAukcje(Aukcja aukcja)
 	{
@@ -165,82 +140,6 @@ public class DodajAukcje extends ServletMain
 		return aukcja;
 	}
 
-	private String zapiszPlik()
-	{
-		String nazwa_pliku = "";
-		
-		if (!ServletFileUpload.isMultipartContent(request))
-//			{
-//				PrintWriter writer = response.getWriter();
-//				writer.println("Request does not contain upload data");
-//				writer.flush();
-//				return;
-//			}
-
-			// configures upload settings
-			System.out.println("case 1");
-			DiskFileItemFactory factory = new DiskFileItemFactory();
-			factory.setSizeThreshold(THRESHOLD_SIZE);
-			factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
-
-			ServletFileUpload upload = new ServletFileUpload(factory);
-			upload.setFileSizeMax(MAX_FILE_SIZE);
-			upload.setSizeMax(MAX_REQUEST_SIZE);
-
-			// constructs the directory path to store upload file
-			String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
-			// creates the directory if it does not exist
-			File uploadDir = new File(uploadPath);
-			System.out.println(uploadPath);
-			if (!uploadDir.exists())
-			{
-				uploadDir.mkdir();
-			}
-
-			try
-			{
-				// parses the request's content to extract file data
-				System.out.println("0");
-				List formItems = upload.parseRequest(request);
-				System.out.println("1");
-				Iterator iter = formItems.iterator();
-				System.out.println("2");
-				// iterates over form's fields
-				//System.out.println(formItems);
-				while (iter.hasNext())
-				{
-					FileItem item = (FileItem) iter.next();
-					// processes only fields that are not form fields
-					if (!item.isFormField())
-					{
-						String fileName = new File(item.getName()).getName();
-						String filePath = uploadPath + File.separator + fileName;
-						File storeFile = new File(filePath);
-						
-						// saves the file on disk
-						item.write(storeFile);
-					}
-					else{
-						
-						System.out.println("nie plik!!!");
-					}
-				}
-				// request.setAttribute("message", "Upload has been done
-				// successfully!");
-			}
-			catch (Exception ex)
-			{
-				System.err.println("blad");
-				// request.setAttribute("message", "There was an error: " +
-				// ex.getMessage());
-			}
-			
-			
-			html = Komunikaty.getSukces("DODANE!");
-			
-			//getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);
-		return nazwa_pliku;
-	}
 
 	private String getRightHtml()
 	{

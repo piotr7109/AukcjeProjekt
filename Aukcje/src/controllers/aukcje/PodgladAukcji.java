@@ -206,7 +206,7 @@ public class PodgladAukcji extends ServletMain
 		String html = "";
 		Przedmiot przedmiot = aukcja.getPrzedmiot();
 		String display = "";
-		if(aukcja.getIdUzytkownika() != sesja.getIdUzytkownika(request))
+		if((!this.sprawdzSesje()) || aukcja.getIdUzytkownika() != sesja.getIdUzytkownika(request))
 		{
 			display = "display:none";
 		}

@@ -77,14 +77,14 @@ public class DodajAukcje extends ServletMain
 		{
 			System.out.println("mode 2");
 			this.zapiszAukcje(aukcja);
-			html = this.getRightHtml();
+			html = "<script>window.location.replace('upload_servlet');</script>";
 		}
 		
 		
 		AukcjaFactory a_factory = new AukcjaFactory();
 		Aukcja ost_aukcja = a_factory.getLastInserted();
 		zapiszIdAukcjiDoSesji(ost_aukcja.getId());
-		html = "<script>window.location.replace('upload_servlet');</script>";
+		
     	initServlet();
     }
 	
@@ -166,7 +166,7 @@ public class DodajAukcje extends ServletMain
 				html = "<script>window.location.replace('dodaj_aukcje?mode=2');</script>";
 				break;
 			case 2:
-				html = Komunikaty.getSukces("Twoje og³oszenie aukcyjne zosta³o pomyœlnie zapisane!");
+				
 				break;
 		}
 

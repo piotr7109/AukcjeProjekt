@@ -83,35 +83,35 @@ public class PodgladAukcji extends ServletMain
 			}
 			if (mode == 1)
 			{
-				Przebicie przebicie = getPrzebicieFromRequest(request);
-				String przebicieTest = this.testyPrzebicie(przebicie);
 
-				if (przebicieTest == "NIEZALOGOWANY")
+				if (!this.sprawdzSesje())
 				{
 					html = Komunikaty.getWarning("Zaloguj siê, aby licytowaæ ");
 				}
-
-				if (przebicieTest == "NISKA_CENA")
-				{
-					html = Komunikaty.getWarning("Podana cena jest zbyt niska, minimalne przebicie: " + aktualna_cena + 1);
-				}
-				else if (przebicieTest == "BRAK_FUNDUSZY")
-				{
-					html = Komunikaty.getWarning("Niestety nie masz wystarczaj¹co du¿o œrodów na koncie. " + "Mo¿e to wynikaæ z udzia³u w innych aukcjach.<br>"
-							+ "<a href='zakup_bickow'>Uzupe³nij swoje konto, aby braæ udzia³ w aukcji.</a>");
-				}
-				else if (przebicieTest == "BRAK_FUNDUSZY_PRZESY£KA")
-				{
-					html = Komunikaty.getWarning("Niestety nie masz wystarczaj¹co du¿o œrodów na koncie. " + "Mo¿e to wynikaæ z udzia³u w innych aukcjach (pamiêtaj o kosztach wysy³ki).<br>"
-							+ "<a href='zakup_bickow'>Uzupe³nij swoje konto, aby braæ udzia³ w aukcji.</a>");
-				}
-				
-				
-				
 				else
 				{
-					przebicie.insertPrzebicie();
-					aktualna_cena = przebicie.getWartosc();
+					Przebicie przebicie = getPrzebicieFromRequest(request);
+					String przebicieTest = this.testyPrzebicie(przebicie);
+
+					if (przebicieTest == "NISKA_CENA")
+					{
+						html = Komunikaty.getWarning("Podana cena jest zbyt niska, minimalne przebicie: " + aktualna_cena + 1);
+					}
+					else if (przebicieTest == "BRAK_FUNDUSZY")
+					{
+						html = Komunikaty.getWarning("Niestety nie masz wystarczaj¹co du¿o œrodów na koncie. " + "Mo¿e to wynikaæ z udzia³u w innych aukcjach.<br>"
+								+ "<a href='zakup_bickow'>Uzupe³nij swoje konto, aby braæ udzia³ w aukcji.</a>");
+					}
+					else if (przebicieTest == "BRAK_FUNDUSZY_PRZESY£KA")
+					{
+						html = Komunikaty.getWarning("Niestety nie masz wystarczaj¹co du¿o œrodów na koncie. " + "Mo¿e to wynikaæ z udzia³u w innych aukcjach (pamiêtaj o kosztach wysy³ki).<br>"
+								+ "<a href='zakup_bickow'>Uzupe³nij swoje konto, aby braæ udzia³ w aukcji.</a>");
+					}
+					else
+					{
+						przebicie.insertPrzebicie();
+						aktualna_cena = przebicie.getWartosc();
+					}
 				}
 
 				mode = 0;
@@ -149,10 +149,6 @@ public class PodgladAukcji extends ServletMain
 
 	private String testyPrzebicie(Przebicie prz)
 	{
-		if (!this.sprawdzSesje())
-		{
-			return "NIEZALOGOWANY";
-		}
 		if (prz.getWartosc() <= aktualna_cena)
 		{
 			return "NISKA_CENA";
@@ -179,7 +175,7 @@ public class PodgladAukcji extends ServletMain
 			u_factory.setId(sesja.getIdUzytkownika(request));
 			Uzytkownik uz = (Uzytkownik) u_factory.getObject();
 			System.out.println(wartosc);
-			if(wartosc + 10 > uz.getStanKonta())
+			if (wartosc + 10 > uz.getStanKonta())
 			{
 				if (wartosc > uz.getStanKonta())
 				{

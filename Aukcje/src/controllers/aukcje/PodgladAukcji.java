@@ -37,7 +37,7 @@ public class PodgladAukcji extends ServletMain
 	private Aukcja aukcja;
 	private int wartosc_przebicia;
 	private String data_ostatniego_przebicia;
-	private double aktualna_cena;
+	private int aktualna_cena;
 
 	public PodgladAukcji()
 	{
@@ -95,7 +95,7 @@ public class PodgladAukcji extends ServletMain
 
 					if (przebicieTest == "NISKA_CENA")
 					{
-						html = Komunikaty.getWarning("Podana cena jest zbyt niska, minimalne przebicie: " + aktualna_cena + 1);
+						html = Komunikaty.getWarning("Podana cena jest zbyt niska, minimalne przebicie: " + (aktualna_cena+1));
 					}
 					else if (przebicieTest == "BRAK_FUNDUSZY")
 					{
@@ -174,7 +174,6 @@ public class PodgladAukcji extends ServletMain
 			UzytkownikFactory u_factory = new UzytkownikFactory();
 			u_factory.setId(sesja.getIdUzytkownika(request));
 			Uzytkownik uz = (Uzytkownik) u_factory.getObject();
-			System.out.println(wartosc);
 			if (wartosc + 10 > uz.getStanKonta())
 			{
 				if (wartosc > uz.getStanKonta())

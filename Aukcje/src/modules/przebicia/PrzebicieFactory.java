@@ -21,7 +21,7 @@ public class PrzebicieFactory extends AbstractFactory
 		p.setId(rs.getInt("id"));
 		p.setIdAukcji(rs.getInt("id_aukcji"));
 		p.setIdUzytkownika(rs.getInt("id_uzytkownika"));
-		p.setWartosc(rs.getDouble("wartosc"));
+		p.setWartosc(rs.getInt("wartosc"));
 		p.setDataPrzebicia(rs.getDate("data_przebicia"));
 
 		return p;
